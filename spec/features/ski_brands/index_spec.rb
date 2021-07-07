@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'ski brands Index' do
 
-  it 'has all of the parents' do
+  it 'has all of the ski brands' do
     atomic = SkiBrand.create!(name:'Atomic', does_racing:'true', year_founded:1955)
     head = SkiBrand.create!(name:'Head', does_racing:'true', year_founded:1950)
     line = SkiBrand.create!(name:'Line', does_racing:'false', year_founded:1995)

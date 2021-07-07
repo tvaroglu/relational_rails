@@ -1,0 +1,2 @@
+class SkiBrandsController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class SkisController < ApplicationController
+end

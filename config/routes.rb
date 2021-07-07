@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   get '/ski_brands', to: 'ski_brands#index'
   get '/ski_brands/:id', to: 'ski_brands#show'
-  
+
+  get 'ski_brands/:id/skis', to: 'ski_brand_skis#index', as: 'ski_brand_skis'
 end

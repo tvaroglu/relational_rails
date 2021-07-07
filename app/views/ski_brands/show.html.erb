@@ -1,2 +1,3 @@
 <p><%= @brand.name %></p>
 <p>Number of ski currently made: <%= @ski_count %></p>
+<%= link_to "#{@brand.name} Skis", ski_brand_skis_path(@brand.id) %>

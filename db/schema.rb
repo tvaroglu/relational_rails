@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_06_225304) do
+ActiveRecord::Schema.define(version: 2021_07_08_021224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,4 +24,18 @@ ActiveRecord::Schema.define(version: 2021_07_06_225304) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "resorts", force: :cascade do |t|
+    t.string "name"
+    t.string "country"
+    t.string "state_province"
+    t.boolean "active"
+    t.string "director_operations"
+    t.integer "ttm_revenue_usd"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "region_id"
+    t.index ["region_id"], name: "index_resorts_on_region_id"
+  end
+
+  add_foreign_key "resorts", "regions"
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_07_002622) do
+ActiveRecord::Schema.define(version: 2021_07_08_195618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 2021_07_07_002622) do
     t.boolean "dogs_allowed"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "trails", force: :cascade do |t|
+    t.string "name"
+    t.integer "length"
+    t.integer "elevation_gain"
+    t.boolean "loop"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -1,9 +1,5 @@
-<h1>Regions</h1>
+<h1>Regions Index</h1>
+
 <% @regions.each do |region| %>
-  <h3><%= region.name %></h3>
-  <p>Priority: <%= region.priority %></p>
-  <p>Currently Active: <%= region.active %></p>
-  <p>RVP of Operations: <%= region.rvp_operations %></p>
-  <p>Created At: <%= region.created_at %></p>
-  <p>Last Updated At: <%= region.updated_at %></p>
+  <p><%= region.name %></p>
 <% end %>

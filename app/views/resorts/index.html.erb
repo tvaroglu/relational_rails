@@ -1,11 +1,5 @@
-<h1>Resorts</h1>
+<h1>Resorts Index</h1>
+
 <% @resorts.each do |resort| %>
-  <h3><%= resort.name %></h3>
-  <p>Country: <%= resort.country %></p>
-  <p>State/Province: <%= resort.state_province %></p>
-  <p>Currently Active: <%= resort.active %></p>
-  <p>Director of Operations: <%= resort.director_operations %></p>
-  <p>Last 12 Months Total Revenue ($MM): <%= (resort.ttm_revenue_usd / 1000000.to_f).round(1) %></p>
-  <p>Created At: <%= resort.created_at %></p>
-  <p>Last Updated At: <%= resort.updated_at %></p>
+  <p><%= resort.name %></p>
 <% end %>

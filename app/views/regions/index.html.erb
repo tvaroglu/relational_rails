@@ -1,5 +1,6 @@
 <h1>Regions Index</h1>
 
 <% @regions.each do |region| %>
-  <p><%= region.name %></p>
+  <%= link_to region.name, "/regions/#{region.id}" %>
+  <br>
 <% end %>

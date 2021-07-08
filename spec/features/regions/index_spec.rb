@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'regions index page' do
-  # For each parent table
-  # As a visitor
-  # When I visit '/parents'
-  # Then I see the name of each parent record in the system
+  # User Story 1, Parent Index (x3)
+    # For each parent table
+    # As a visitor
+    # When I visit '/parents'
+    # Then I see the name of each parent record in the system
   it 'can display all of the region names' do
     region_1 = Region.create!(
       name: 'US - Rocky Mountain',

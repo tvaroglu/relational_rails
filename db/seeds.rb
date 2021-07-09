@@ -35,16 +35,16 @@ apac = Region.create!(
   active: true,
   rvp_operations: 'Steven Chu',
   priority: 2)
-eu = Region.create!(
-  name: 'EU',
-  active: true,
-  rvp_operations: 'Klaus Heisler',
-  priority: 1)
 latam = Region.create!(
   name: 'LATAM',
   active: false,
   rvp_operations: 'Gustavo Fring',
   priority: 3)
+eu = Region.create!(
+  name: 'EU',
+  active: true,
+  rvp_operations: 'Klaus Heisler',
+  priority: 1)
 
 
 us_rocky_mountain.resorts.create!(

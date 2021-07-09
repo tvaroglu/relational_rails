@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe 'resorts index page' do
-  # User Story 3, Child Index (x3)
-    # As a visitor
-    # When I visit '/child_table_name'
-    # Then I see each Child in the system including the Child's attributes:
-  it "can display all of the resorts' attributes" do
+RSpec.describe "region's resorts index" do
+  # User Story 5, Parent Children Index (x3)
+  #   As a visitor
+  #   When I visit '/parents/:parent_id/child_table_name'
+  #   Then I see each Child that is associated with that Parent with each Child's attributes:
+  it 'displays the associated resort names and attributes' do
     region = Region.create!(
       name: 'US - Rocky Mountain',
       active: true,
@@ -26,7 +26,7 @@ RSpec.describe 'resorts index page' do
       director_operations: 'Doug Lowell',
       ttm_revenue_usd: 227373675)
 
-    visit "/resorts"
+    visit "/regions/#{region.id}/resorts"
     # save_and_open_page
 
     expect(page).to have_content(resort_1.name)
@@ -62,11 +62,53 @@ RSpec.describe 'resorts index page' do
       director_operations: 'Molly Hauck',
       ttm_revenue_usd: 170530257)
 
-    visit "/resorts"
+    visit "/regions/#{region.id}/resorts"
     # save_and_open_page
     click_on resort.name
 
     expect(current_path).to eq("/resorts/#{resort.id}")
+  end
+
+  it 'links back to the parent region page' do
+    region = Region.create!(
+      name: 'US - Rocky Mountain',
+      active: true,
+      rvp_operations: 'Fred "Shreddy" McGnar',
+      priority: 1)
+    resort = region.resorts.create!(
+      name: 'Crested Butte',
+      country: 'United States',
+      state_province: 'CO',
+      active: true,
+      director_operations: 'Molly Hauck',
+      ttm_revenue_usd: 170530257)
+
+    visit "/regions/#{region.id}/resorts"
+    # save_and_open_page
+    click_on region.name
+
+    expect(current_path).to eq("/regions/#{region.id}")
+  end
+
+  it 'displays a button to return to the parent index from the show page' do
+    region = Region.create!(
+      name: 'US - Rocky Mountain',
+      active: true,
+      rvp_operations: 'Fred "Shreddy" McGnar',
+      priority: 1)
+    resort = region.resorts.create!(
+      name: 'Crested Butte',
+      country: 'United States',
+      state_province: 'CO',
+      active: true,
+      director_operations: 'Molly Hauck',
+      ttm_revenue_usd: 170530257)
+
+    visit "/regions/#{region.id}/resorts"
+    # save_and_open_page
+    click_button 'Regions Index'
+
+    expect(current_path).to eq('/regions')
   end
 
 end

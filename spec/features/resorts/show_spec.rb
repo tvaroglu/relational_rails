@@ -5,7 +5,7 @@ RSpec.describe 'resort show page' do
     # As a visitor
     # When I visit '/child_table_name/:id'
     # Then I see the child with that id including the child's attributes:
-  it 'displays the resort title and attributes' do
+  it 'displays the resort name and attributes' do
     region = Region.create!(
       name: 'US - Rocky Mountain',
       active: true,
@@ -41,7 +41,7 @@ RSpec.describe 'resort show page' do
     expect(page).to_not have_content(resort_2.name)
   end
 
-  it 'displays a link to return to the parent index from the show page' do
+  it 'displays a button to return to the parent index from the show page' do
     region = Region.create!(
       name: 'US - Rocky Mountain',
       active: true,
@@ -57,8 +57,8 @@ RSpec.describe 'resort show page' do
 
     visit "/resorts/#{resort.id}"
     # save_and_open_page
-
-    click_link 'Resorts Index'
+    click_button 'Resorts Index'
+    
     expect(current_path).to eq('/resorts')
   end
 

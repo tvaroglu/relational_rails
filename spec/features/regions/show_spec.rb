@@ -6,7 +6,7 @@ RSpec.describe 'region show page' do
     # When I visit '/parents/:id'
     # Then I see the parent with that id including the parent's attributes:
     # - data from each column that is on the parent table
-  it 'displays the region title' do
+  it 'displays the region name' do
     region_1 = Region.create!(
       name: 'US - Rocky Mountain',
       active: true,
@@ -43,7 +43,7 @@ RSpec.describe 'region show page' do
     expect(page).to have_content("Last Updated At: #{region.updated_at}")
   end
 
-  it 'displays a link to return to the parent index from the show page' do
+  it 'displays a link to the associated children from the show page' do
     region = Region.create!(
       name: 'US - Rocky Mountain',
       active: true,
@@ -53,7 +53,21 @@ RSpec.describe 'region show page' do
     visit "/regions/#{region.id}"
     # save_and_open_page
 
-    click_link 'Regions Index'
+    click_link 'View All Resorts'
+    expect(current_path).to eq("/regions/#{region.id}/resorts")
+  end
+
+  it 'displays a button to return to the parent index from the show page' do
+    region = Region.create!(
+      name: 'US - Rocky Mountain',
+      active: true,
+      rvp_operations: 'Fred "Shreddy" McGnar',
+      priority: 1)
+
+    visit "/regions/#{region.id}"
+    # save_and_open_page
+
+    click_button 'Regions Index'
     expect(current_path).to eq('/regions')
   end
 

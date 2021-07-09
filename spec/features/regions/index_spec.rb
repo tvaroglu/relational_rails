@@ -33,6 +33,7 @@ RSpec.describe 'regions index page' do
       priority: 1)
 
     visit "/regions"
+    # save_and_open_page
     click_on region.name
 
     expect(current_path).to eq("/regions/#{region.id}")

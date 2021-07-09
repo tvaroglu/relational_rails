@@ -4,7 +4,8 @@
 <br>
 
 
-<h1>Resorts Index</h1>
+<h2><%= link_to @region.name, "/regions/#{@region.id}" %></h2>
+<br>
 
 <% @resorts.each do |resort| %>
   <strong><%= link_to resort.name, "/resorts/#{resort.id}" %></strong>

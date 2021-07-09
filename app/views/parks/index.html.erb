@@ -1,8 +1,9 @@
 <h1>Parks</h1>
 <% @parks.each do |park| %>
   <h3><%= park.name %></h3>
-  <p>State: <%= park.state %><p>
-  <p>County: <%= park.county %><p>
-  <p>Parking Fee: $<%= park.parking_fee %><p>
-  <p>Parking Capacity: <%= park.parking_capacity %><p>
+  <p>State: <%= park.state %></p>
+  <p>County: <%= park.county %></p>
+  <p>Parking Fee: $<%= park.parking_fee %></p>
+  <p>Parking Capacity: <%= park.parking_capacity %></p>
+  <p>Dogs Allowed: <%= park.dogs_allowed %></p>
 <% end %>

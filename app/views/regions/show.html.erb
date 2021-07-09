@@ -3,7 +3,11 @@
 </form>
 <br><br>
 
-<%= link_to 'View All Resorts', "/regions/#{@region.id}/resorts" %>
+<% if @region.resorts.length == 1 %>
+  <%= link_to "View All (#{@region.resorts.length}) Resort", "/regions/#{@region.id}/resorts" %>
+<% else %>
+  <%= link_to "View All (#{@region.resorts.length}) Resorts", "/regions/#{@region.id}/resorts" %>
+<% end %>
 
 
 <h1><%= @region.name %></h1>

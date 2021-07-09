@@ -43,18 +43,59 @@ RSpec.describe 'region show page' do
     expect(page).to have_content("Last Updated At: #{region.updated_at}")
   end
 
-  it 'displays a link to the associated children from the show page' do
-    region = Region.create!(
-      name: 'US - Rocky Mountain',
-      active: true,
-      rvp_operations: 'Fred "Shreddy" McGnar',
-      priority: 1)
+  describe 'display a link to the associated children with total children count' do
+  # User Story 7, Parent Child Count (x3)
+    # As a visitor
+    # When I visit a parent's show page
+    # I see a count of the number of children associated with this parent
+    it 'displays correct grammar if more than one child is associated to the parent' do
+      region = Region.create!(
+        name: 'US - Rocky Mountain',
+        active: true,
+        rvp_operations: 'Fred "Shreddy" McGnar',
+        priority: 1)
+      resort_1 = region.resorts.create!(
+        name: 'Crested Butte',
+        country: 'United States',
+        state_province: 'CO',
+        active: true,
+        director_operations: 'Molly Hauck',
+        ttm_revenue_usd: 170530257)
+      resort_2 = region.resorts.create!(
+        name: 'Breckenridge',
+        country: 'United States',
+        state_province: 'CO',
+        active: true,
+        director_operations: 'Doug Lowell',
+        ttm_revenue_usd: 227373675)
 
-    visit "/regions/#{region.id}"
-    # save_and_open_page
+      visit "/regions/#{region.id}"
+      # save_and_open_page
 
-    click_link 'View All Resorts'
-    expect(current_path).to eq("/regions/#{region.id}/resorts")
+      click_link "View All (#{region.resorts.length}) Resorts"
+      expect(current_path).to eq("/regions/#{region.id}/resorts")
+    end
+
+    it 'displays correct grammar if only one child is associated to the parent' do
+      region = Region.create!(
+        name: 'US - Rocky Mountain',
+        active: true,
+        rvp_operations: 'Fred "Shreddy" McGnar',
+        priority: 1)
+      resort = region.resorts.create!(
+        name: 'Crested Butte',
+        country: 'United States',
+        state_province: 'CO',
+        active: true,
+        director_operations: 'Molly Hauck',
+        ttm_revenue_usd: 170530257)
+
+      visit "/regions/#{region.id}"
+      # save_and_open_page
+
+      click_link "View All (#{region.resorts.length}) Resort"
+      expect(current_path).to eq("/regions/#{region.id}/resorts")
+    end
   end
 
   it 'displays a button to return to the parent index from the show page' do

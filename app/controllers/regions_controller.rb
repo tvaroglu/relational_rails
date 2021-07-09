@@ -1,7 +1,7 @@
 class RegionsController < ApplicationController
 
   def index
-    @regions = Region.all
+    @regions = Region.all.order(created_at: :desc)
   end
 
   def show

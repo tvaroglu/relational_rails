@@ -1,0 +1,15 @@
+<form style="float:left; padding-top:5px;" action="/resorts">
+  <input type="submit" value="Resorts Index"/>
+</form>
+<br>
+
+
+<h1><%= @resort.name %></h1>
+
+<p>Country: <%= @resort.country %></p>
+<p>State/Province: <%= @resort.state_province %></p>
+<p>Currently Active: <%= @resort.active %></p>
+<p>Director of Operations: <%= @resort.director_operations %></p>
+<p>Last 12 Months Total Revenue ($MM): <%= (@resort.ttm_revenue_usd / 1000000.to_f).round(1) %></p>
+<p>Created At: <%= @resort.created_at %></p>
+<p>Last Updated At: <%= @resort.updated_at %></p>

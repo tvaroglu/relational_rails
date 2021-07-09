@@ -40,7 +40,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
   gem 'simplecov'
-  
+  gem 'capybara'
+  gem 'launchy'
+  gem 'shoulda-matchers', '~> 4.0'
+  gem 'orderly'
 end
 
 group :development do
@@ -52,3 +55,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'bootstrap'
+gem 'jquery-rails'

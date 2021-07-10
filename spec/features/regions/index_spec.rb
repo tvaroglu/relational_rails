@@ -27,7 +27,9 @@ RSpec.describe 'regions index page' do
     # save_and_open_page
 
     expect(page).to have_content(region_1.name)
+    expect(page).to have_content(region_1.created_at)
     expect(page).to have_content(region_2.name)
+    expect(page).to have_content(region_2.created_at)
 
     expect(region_2.name).to appear_before(region_1.name)
   end

@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_08_021224) do
+ActiveRecord::Schema.define(version: 2021_07_10_155953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "parks", force: :cascade do |t|
+    t.string "name"
+    t.string "state"
+    t.string "county"
+    t.integer "parking_fee"
+    t.boolean "dogs_allowed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "regions", force: :cascade do |t|
     t.string "name"
@@ -37,5 +47,17 @@ ActiveRecord::Schema.define(version: 2021_07_08_021224) do
     t.index ["region_id"], name: "index_resorts_on_region_id"
   end
 
+  create_table "trails", force: :cascade do |t|
+    t.string "name"
+    t.integer "length"
+    t.integer "elevation_gain"
+    t.boolean "loop"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "park_id"
+    t.index ["park_id"], name: "index_trails_on_park_id"
+  end
+
   add_foreign_key "resorts", "regions"
+  add_foreign_key "trails", "parks"
 end

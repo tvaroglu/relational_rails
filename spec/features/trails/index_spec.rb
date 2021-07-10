@@ -5,11 +5,16 @@ RSpec.describe 'User Story 3 - Trails index' do
   # When I visit '/child_table_name'
   # Then I see each Child in the system including the Child's attributes:
   it 'shows a list of trails including attributes' do
-    trail_1 = Trail.create!(name: "North Table Loop",
+    park = Park.create!(name: "North Table Mountain",
+                        state: "CO",
+                        county: "Jefferson",
+                        parking_fee: 0,
+                        dogs_allowed: true)
+    trail_1 = park.trails.create!(name: "North Table Loop",
                           length: 38016,
                           elevation_gain: 1059,
                           loop: true)
-    trail_2 = Trail.create!(name: "Cottonwood Canyon Trail",
+    trail_2 = park.trails.create!(name: "Cottonwood Canyon Trail",
                           length: 5280,
                           elevation_gain: 320,
                           loop: false)

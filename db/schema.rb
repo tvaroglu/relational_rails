@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_10_034138) do
+ActiveRecord::Schema.define(version: 2021_07_10_155953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,10 @@ ActiveRecord::Schema.define(version: 2021_07_10_034138) do
     t.boolean "loop"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "park_id"
+    t.index ["park_id"], name: "index_trails_on_park_id"
   end
 
   add_foreign_key "resorts", "regions"
+  add_foreign_key "trails", "parks"
 end

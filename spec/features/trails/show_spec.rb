@@ -5,7 +5,12 @@ RSpec.describe 'User Story 4 - Trails Show' do
   # When I visit '/child_table_name/:id'
   # Then I see the child with that id including the child's attributes:
   it 'displays the name of the specified trail along with attributes' do
-    trail = Trail.create!(name: "North Table Loop",
+    park = Park.create!(name: "North Table Mountain",
+                        state: "CO",
+                        county: "Jefferson",
+                        parking_fee: 0,
+                        dogs_allowed: true)
+    trail = park.trails.create!(name: "North Table Loop",
                           length: 38016,
                           elevation_gain: 1059,
                           loop: true)

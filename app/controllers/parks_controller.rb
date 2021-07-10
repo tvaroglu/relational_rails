@@ -1,6 +1,6 @@
 class ParksController < ApplicationController
   def index
-    @parks = Park.all
+    @parks = Park.all.order(created_at: :desc)
   end
 
   def show

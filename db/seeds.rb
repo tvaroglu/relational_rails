@@ -7,6 +7,33 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+Trail.destroy_all
+Park.destroy_all
+
+north_table = Park.create!(
+  name: "North Table Mountain",
+  state: "CO",
+  county: "Jefferson",
+  parking_fee: 0,
+  dogs_allowed: true)
+chatauqua = Park.create!(
+  name: "Chatauqua Park",
+  state: "CO",
+  county: "Boulder",
+  parking_fee: 5,
+  dogs_allowed: true)
+
+nt_loop = north_table.trails.create!(
+  name: "North Table Loop",
+  length: 38016,
+  elevation_gain: 1059,
+  loop: true)
+cottonwood = north_table.trails.create!(
+  name: "Cottonwood Canyon Trail",
+  length: 5280,
+  elevation_gain: 320,
+  loop: false)
+
 Resort.destroy_all
 Region.destroy_all
 

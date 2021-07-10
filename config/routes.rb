@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get '/parks', to: 'parks#index'
   get '/parks/:id', to: 'parks#show'
 
+  get '/trails', to: 'trails#index'
+
   get '/regions', to: 'regions#index'
   get '/regions/:id', to: 'regions#show'
   get '/regions/:id/resorts', to: 'regions#resorts'

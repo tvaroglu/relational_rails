@@ -2,7 +2,7 @@
 
 <% @regions.each do |region| %>
   <%= link_to region.name, "/regions/#{region.id}" %>
-  <br>
+  <p>Created At: <%=region.created_at %></p>
 <% end %>
 
 <br><br>

@@ -19,4 +19,27 @@ RSpec.describe 'User Story 2 - Park Show' do
     expect(page).to have_content("Parking Fee: $#{park.parking_fee}")
     expect(page).to have_content("Dogs Allowed: #{park.dogs_allowed}")
   end
+
+  # User Story 7
+  # As a visitor
+  # When I visit a parent's show page
+  # I see a count of the number of children associated with this parent
+  it 'shows the count of the number of trails associated with the specified park' do
+    park = Park.create!(name: "North Table Mountain",
+                        state: "CO",
+                        county: "Jefferson",
+                        parking_fee: 0,
+                        dogs_allowed: true)
+    trail_1 = park.trails.create!(name: "North Table Loop",
+                          length: 38016,
+                          elevation_gain: 1059,
+                          loop: true)
+    trail_2 = park.trails.create!(name: "Cottonwood Canyon Trail",
+                          length: 5280,
+                          elevation_gain: 320,
+                          loop: false)
+    visit "/parks/#{park.id}"
+
+    expect(page).to have_content("#{park.trails.length} Trails")
+  end
 end

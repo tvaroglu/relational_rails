@@ -80,4 +80,23 @@ RSpec.describe 'User Story 2 - Park Show' do
 
     expect(current_path).to eq('/parks')
   end
+
+
+  # User Story 10, Parent Child Index Link
+  # As a visitor
+  # When I visit a parent show page ('/parents/:id')
+  # Then I see a link to take me to that parent's `child_table_name` page ('/parents/:id/child_table_name')
+  it 'shows link to the parks index' do
+    park = Park.create!(name: "North Table Mountain",
+                        state: "CO",
+                        county: "Jefferson",
+                        parking_fee: 0,
+                        dogs_allowed: true)
+
+    visit "/parks/#{park.id}"
+
+    click_on "#{park.name}"
+
+    expect(current_path).to eq("/parks/#{park.id}/trails")
+  end
 end

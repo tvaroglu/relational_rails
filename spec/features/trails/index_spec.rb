@@ -18,6 +18,7 @@ RSpec.describe 'User Story 3 - Trails index' do
                           length: 5280,
                           elevation_gain: 320,
                           loop: false)
+
     visit '/trails'
 
     expect(page).to have_content(trail_1.name)
@@ -28,5 +29,17 @@ RSpec.describe 'User Story 3 - Trails index' do
     expect(page).to have_content(trail_2.elevation_gain)
     expect(page).to have_content(trail_1.loop)
     expect(page).to have_content(trail_2.loop)
+  end
+
+  # User Story 9:
+  # As a visitor
+  # When I visit any page on the site
+  # Then I see a link at the top of the page that takes me to the Parent Index
+  it 'shows link to the parks index' do
+    visit "/trails"
+
+    click_on "Parks Index"
+
+    expect(current_path).to eq('/parks')
   end
 end

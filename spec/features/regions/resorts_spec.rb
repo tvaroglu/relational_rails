@@ -106,7 +106,7 @@ RSpec.describe "region's resorts index" do
 
     visit "/regions/#{region.id}/resorts"
     # save_and_open_page
-    click_button 'Regions Index'
+    click_on 'Regions Index'
 
     expect(current_path).to eq('/regions')
   end

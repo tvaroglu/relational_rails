@@ -57,8 +57,8 @@ RSpec.describe 'resort show page' do
 
     visit "/resorts/#{resort.id}"
     # save_and_open_page
-    click_button 'Resorts Index'
-    
+    click_on 'Resorts Index'
+
     expect(current_path).to eq('/resorts')
   end
 

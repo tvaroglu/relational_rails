@@ -11,6 +11,7 @@ RSpec.describe 'User Story 2 - Park Show' do
                         county: "Jefferson",
                         parking_fee: 0,
                         dogs_allowed: true)
+                        
     visit "/parks/#{park.id}"
 
     expect(page).to have_content(park.name)
@@ -38,8 +39,27 @@ RSpec.describe 'User Story 2 - Park Show' do
                           length: 5280,
                           elevation_gain: 320,
                           loop: false)
+
     visit "/parks/#{park.id}"
 
     expect(page).to have_content("#{park.trails.length} Trails")
+  end
+
+  # User Story 8:
+  # As a visitor
+  # When I visit any page on the site
+  # Then I see a link at the top of the page that takes me to the Child Index
+  it 'shows link to the trails index' do
+    park = Park.create!(name: "North Table Mountain",
+                        state: "CO",
+                        county: "Jefferson",
+                        parking_fee: 0,
+                        dogs_allowed: true)
+
+    visit "/parks/#{park.id}"
+
+    click_on "Trails Index"
+
+    expect(current_path).to eq('/trails')
   end
 end

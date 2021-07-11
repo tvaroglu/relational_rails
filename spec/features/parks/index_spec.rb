@@ -45,4 +45,16 @@ RSpec.describe 'Park index' do
 
     expect(park_2.name).to appear_before(park_1.name)
   end
+
+  # User Story 8:
+  # As a visitor
+  # When I visit any page on the site
+  # Then I see a link at the top of the page that takes me to the Child Index
+  it 'shows link to the trails index' do
+    visit '/parks'
+
+    click_on "Trails Index"
+
+    expect(current_path).to eq('/trails')
+  end
 end

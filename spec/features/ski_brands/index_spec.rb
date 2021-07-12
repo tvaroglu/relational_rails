@@ -30,4 +30,21 @@ RSpec.describe 'ski brands Index' do
     expect(@head.name).to appear_before(@line.name)
     expect(@line.name).to appear_before(@armada.name)
   end
+
+  it '11 - has a link to create a new brand, which takes to form. Once submitted, returns to index and see new brand' do
+    visit '/ski_brands'
+
+    click_on('New Ski Brand')
+    expect(current_path).to eq("/ski_brands/new")
+    fill_in 'name', with: 'Head'
+    select 'true', from: "does_racing"
+    fill_in 'year_founded', with: '1959'
+    click_on('submit')
+    expect(current_path).to eq("/ski_brands")
+    within("//tr[@id='Head']") do
+      expect(page).to have_content('Head')
+      expect(page).to have_content('1959')
+      expect(page).to have_content('true')
+    end
+  end
 end

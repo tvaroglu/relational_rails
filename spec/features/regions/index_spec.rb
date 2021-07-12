@@ -23,7 +23,7 @@ RSpec.describe 'regions index page' do
       rvp_operations: 'Gustavo Fring',
       priority: 3)
 
-    visit "/regions"
+    visit '/regions'
     # save_and_open_page
 
     expect(page).to have_content(region_1.name)
@@ -41,7 +41,7 @@ RSpec.describe 'regions index page' do
       rvp_operations: 'Fred "Shreddy" McGnar',
       priority: 1)
 
-    visit "/regions"
+    visit '/regions'
     # save_and_open_page
     click_on region.name
 

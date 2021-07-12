@@ -20,12 +20,12 @@ RSpec.describe 'region edit page' do
       priority: 1)
     visit '/regions'
     # save_and_open_page
-    click_on "Update Region"
+    click_on 'Update Region'
 
     expect(current_path).to eq("/regions/#{region.id}/edit")
   end
 
-  it 'can edit the artist' do
+  it 'can edit the region' do
     region = Region.create!(
       name: 'US - Rocky Mountainssss',
       active: true,
@@ -36,10 +36,17 @@ RSpec.describe 'region edit page' do
 
     expect(page).to have_content(region.name)
 
-    click_on "Update Region"
-    fill_in 'Name', with: 'US - Rocky Mountain'
+    click_on 'Update Region'
+    fill_in('Name:', with: 'US - Rocky Mountain')
+    choose 'Yes'
+    fill_in('RVP of Operations:', with: region.rvp_operations)
+    fill_in('Priority:', with: region.priority)
     click_button 'Update Region'
 
     expect(current_path).to eq("/regions/#{region.id}")
+    expect(page).to_not have_content(region.name)
+    expect(page).to have_content(region.active)
+    expect(page).to have_content(region.rvp_operations)
+    expect(page).to have_content(region.priority)
   end
 end

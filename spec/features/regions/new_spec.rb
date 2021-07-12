@@ -30,11 +30,11 @@ RSpec.describe 'Region creation' do
     visit 'regions/new'
     # save_and_open_page
 
-    fill_in('Name', with: region.name)
-    fill_in('Currently Active', with: region.active)
-    fill_in('RVP of Operations', with: region.rvp_operations)
-    fill_in('Priority', with: region.priority)
-    click_button('Create Region')
+    fill_in('Name:', with: region.name)
+    choose 'Yes'
+    fill_in('RVP of Operations:', with: region.rvp_operations)
+    fill_in('Priority:', with: region.priority)
+    click_button 'Create Region'
 
     expect(current_path).to eq("/regions")
     expect(page).to have_content(region.name)

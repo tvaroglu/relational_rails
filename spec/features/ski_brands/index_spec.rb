@@ -10,12 +10,10 @@ RSpec.describe 'ski brands Index' do
     @bentChetler = Ski.create!(name:'Bent Chetler 100', for_jumps:'true', turn_radius:19.5, ski_brand_id: @atomic.id)
     @vantage = Ski.create!(name:'Vantage 90 Ti', for_jumps:'false', turn_radius:18.4, ski_brand_id: @atomic.id)
     @arv106 = Ski.create!(name:'ARV 106', for_jumps:'true', turn_radius:20.5, ski_brand_id: @armada.id)
+    visit '/ski_brands'
   end
 
   it 'has all of the ski brands' do
-
-    visit '/ski_brands'
-
     expect(page).to have_content(@atomic.name)
     expect(page).to have_content(@head.name)
     expect(page).to have_content(@armada.name)
@@ -23,17 +21,12 @@ RSpec.describe 'ski brands Index' do
   end
 
   it 'is sorted by most recently created' do
-
-    visit '/ski_brands'
-
     expect(@atomic.name).to appear_before(@head.name)
     expect(@head.name).to appear_before(@line.name)
     expect(@line.name).to appear_before(@armada.name)
   end
 
   it '11 - has a link to create a new brand, which takes to form. Once submitted, returns to index and see new brand' do
-    visit '/ski_brands'
-
     click_on('New Ski Brand')
     expect(current_path).to eq("/ski_brands/new")
     fill_in 'name', with: 'Volkl'
@@ -49,7 +42,6 @@ RSpec.describe 'ski brands Index' do
   end
 
   it '17 - each brand has a link to edit, which updates and returns to /ski_brands' do
-    visit '/ski_brands'
     within("//tr[@id='Head']") do
       click_on('edit')
     end
@@ -60,5 +52,13 @@ RSpec.describe 'ski brands Index' do
     within("//tr[@id='Head']") do
       expect(page).to have_content("2005")
     end
+  end
+
+  it 'has a delete button for each brand, which deletes it and returns to index' do
+    within("//tr[@id='Head']") do
+      click_on('delete')
+    end
+    expect(current_path).to eq("/ski_brands")
+    expect(page).to_not have_content("Head")
   end
 end

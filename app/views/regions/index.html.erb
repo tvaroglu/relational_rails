@@ -1,12 +1,13 @@
 <h1>Regions Index</h1>
 
-<% @regions.each do |region| %>
-  <%= link_to region.name, "/regions/#{region.id}" %>
-  <p>Created At: <%=region.created_at %></p>
-<% end %>
-
+<form style="float:left; padding-bottom:5px;" action="/regions/new">
+  <input type="submit" value="New Region"/>
+</form>
 <br><br>
 
-<!-- <form style="float:left; padding-left:1px;" action="/resorts">
-  <input type="submit" value="Resorts Index"/>
-</form> -->
+<% @regions.each do |region| %>
+  <h3><%= link_to region.name, "/regions/#{region.id}" %></h3>
+  <p>Created At: <%=region.created_at %></p>
+  <em><%= link_to 'Update Region', "/regions/#{region.id}/edit" %></em>
+  <br><br>
+<% end %>

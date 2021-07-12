@@ -1,9 +1,3 @@
-<!-- <form style="float:left; padding-top:5px;" action="/regions">
-  <input type="submit" value="Regions Index"/>
-</form>
-<br><br> -->
-
-
 <h1><%= @region.name %></h1>
 <% if @region.resorts.length == 1 %>
   <%= link_to "View All (#{@region.resorts.length}) Resort", "/regions/#{@region.id}/resorts" %>

@@ -47,6 +47,22 @@ ActiveRecord::Schema.define(version: 2021_07_10_155953) do
     t.index ["region_id"], name: "index_resorts_on_region_id"
   end
 
+  create_table "ski_brands", force: :cascade do |t|
+    t.string "name"
+    t.boolean "does_racing"
+    t.integer "year_founded"
+  end
+
+  create_table "skis", force: :cascade do |t|
+    t.string "name"
+    t.boolean "for_jumps"
+    t.float "turn_radius"
+    t.bigint "ski_brand_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ski_brand_id"], name: "index_skis_on_ski_brand_id"
+  end
+
   create_table "trails", force: :cascade do |t|
     t.string "name"
     t.integer "length"
@@ -59,5 +75,6 @@ ActiveRecord::Schema.define(version: 2021_07_10_155953) do
   end
 
   add_foreign_key "resorts", "regions"
+  add_foreign_key "skis", "ski_brands"
   add_foreign_key "trails", "parks"
 end

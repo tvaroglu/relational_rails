@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/trails/:id', to: 'trails#show'
 
   get '/regions', to: 'regions#index'
+  get '/regions/new', to: 'regions#new'
+  post '/regions', to: 'regions#create'
   get '/regions/:id', to: 'regions#show'
   get '/regions/:id/resorts', to: 'regions#resorts'
 

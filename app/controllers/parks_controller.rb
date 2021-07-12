@@ -11,7 +11,14 @@ class ParksController < ApplicationController
   end
 
   def create
-    park = Park.create(name: params[:name])
-    redirect_to "/parks/#{park.id}"
+    Park.create!(park_params)
+    redirect_to "/parks"
+  end
+
+  private
+  def park_params
+    params.permit(:name, :state, :county)
+    # params.permit(state:)
+    # params.permit(county:)
   end
 end

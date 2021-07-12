@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Meant for jumps?</th>
+    <th>Turn Radius</th>
+  </tr>
+  <% @skis.each do |ski| %>
+    <%= ski.name %>
+    <%= ski.for_jumps %>
+    <%= ski.turn_radius %>
+  <% end %>
+</table>

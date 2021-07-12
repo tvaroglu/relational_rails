@@ -98,20 +98,6 @@ RSpec.describe 'region show page' do
     end
   end
 
-  # it 'displays a button to return to the parent index from the show page' do
-  #   region = Region.create!(
-  #     name: 'US - Rocky Mountain',
-  #     active: true,
-  #     rvp_operations: 'Fred "Shreddy" McGnar',
-  #     priority: 1)
-  #
-  #   visit "/regions/#{region.id}"
-  #   # save_and_open_page
-  #
-  #   click_button 'Regions Index'
-  #   expect(current_path).to eq('/regions')
-  # end
-
 # User Story 10, Parent Child Index Link
   # As a visitor
   # When I visit a parent show page ('/parents/:id')

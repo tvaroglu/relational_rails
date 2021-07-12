@@ -1,0 +1,24 @@
+<%= form_with url: '/regions', method: :post, local: true do |form| %>
+  <br>
+  <%= form.label :name, 'Name:' %>
+  <%= form.text_field :name %>
+  <br>
+
+  <%= form.label :active, 'Currently Active:'%>
+  <br>
+  <%= form.radio_button :active, true %>
+  <%= form.label :active, 'Yes', :value => true %>
+  <br>
+  <%= form.radio_button :active, false %>
+  <%= form.label :active, 'No', :value => false %>
+  <br>
+
+  <%= form.label :rvp_operations, 'RVP of Operations:' %>
+  <%= form.text_field :rvp_operations %>
+  <br>
+  <%= form.label :priority, 'Priority:' %>
+  <%= form.select :priority, [1,2,3] %>
+  <br>
+  <br>
+  <%= form.submit 'Create Region' %>
+<% end %>

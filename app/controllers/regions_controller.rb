@@ -16,6 +16,16 @@ class RegionsController < ApplicationController
     redirect_to "/regions"
   end
 
+  def edit
+    @region = Region.find(params[:id])
+  end
+
+  def update
+    region = Region.find(params[:id])
+    region.update(region_params)
+    redirect_to "/regions/#{region.id}"
+  end
+
   def resorts
     @region = Region.find(params[:id])
     @resorts = @region.resorts

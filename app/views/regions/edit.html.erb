@@ -1,0 +1,11 @@
+<%= form_with url: "/regions/#{@region.id}/edit", method: :patch, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %><br>
+  <%= form.label :active, "Currently Active" %>
+  <%= form.text_field :active %><br>
+  <%= form.label :rvp_operations, "RVP of Operations" %>
+  <%= form.text_field :rvp_operations %><br>
+  <%= form.label :priority %>
+  <%= form.text_field :priority %><br><br>
+  <%= form.submit "Update Region" %>
+<% end %>

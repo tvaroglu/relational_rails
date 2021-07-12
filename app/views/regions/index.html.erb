@@ -8,4 +8,6 @@
 <% @regions.each do |region| %>
   <h3><%= link_to region.name, "/regions/#{region.id}" %></h3>
   <p>Created At: <%=region.created_at %></p>
+  <em><%= link_to 'Update Region', "/regions/#{region.id}/edit" %></em>
+  <br><br>
 <% end %>

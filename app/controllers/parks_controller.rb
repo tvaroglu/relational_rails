@@ -6,4 +6,12 @@ class ParksController < ApplicationController
   def show
     @park = Park.find(params[:id])
   end
+
+  def new
+  end
+
+  def create
+    park = Park.create(name: params[:name])
+    redirect_to "/parks/#{park.id}"
+  end
 end

@@ -1,0 +1,16 @@
+<h1>Create New Park</h1>
+
+<%= form_with url: '/parks', method: :post, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %><br><br>
+  <%= form.label :state %>
+  <%= form.text_field :state %><br><br>
+  <%= form.label :county %>
+  <%= form.text_field :county %><br><br>
+  <%= form.label :parking_fee %>
+  <%= form.text_field :parking_fee %><br><br>
+  <%= form.label :dogs_allowed %>
+  <%= form.text_field :dogs_allowed %><br><br>
+
+  <%= form.submit 'Create Park' %>
+<% end %>

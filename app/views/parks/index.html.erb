@@ -1,5 +1,7 @@
 <!-- <a href="/trails">Trails Index</a> -->
 
+<br><br><%= link_to "New Park", '/parks/new' %>
+
 <h1>All Parks</h1>
 <% @parks.each do |park| %>
   <h3><%= park.name %></h3>

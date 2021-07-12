@@ -104,7 +104,7 @@ RSpec.describe "region's resorts index" do
       # Then a `POST` request is sent to '/parents/:parent_id/child_table_name',
       # a new child object/row is created for that parent,
       # and I am redirected to the Parent Childs Index page where I can see the new child listed
-    it 'can link to the form to create new children from the index page' do
+    xit 'can link to the form to create new children from the index page' do
       region = Region.create!(
         name: 'US - Rocky Mountain',
         active: true,
@@ -118,7 +118,7 @@ RSpec.describe "region's resorts index" do
       expect(current_path).to eq("/regions/#{region.id}/resorts/new")
     end
 
-    it 'can create new resorts from the provided form' do
+    xit 'can create new resorts from the provided form' do
       region = Region.create!(
         name: 'US - Rocky Mountain',
         active: true,

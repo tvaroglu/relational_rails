@@ -10,6 +10,13 @@
 Trail.destroy_all
 Park.destroy_all
 
+Resort.destroy_all
+Region.destroy_all
+
+SkiBrand.destroy_all
+Ski.destroy_all
+
+# Parks
 north_table = Park.create!(
   name: "North Table Mountain",
   state: "CO",
@@ -23,6 +30,7 @@ chatauqua = Park.create!(
   parking_fee: 5,
   dogs_allowed: true)
 
+# Trails
 nt_loop = north_table.trails.create!(
   name: "North Table Loop",
   length: 38016,
@@ -34,9 +42,8 @@ cottonwood = north_table.trails.create!(
   elevation_gain: 320,
   loop: false)
 
-Resort.destroy_all
-Region.destroy_all
 
+# Regions
 us_rocky_mountain = Region.create!(
   name: 'US - Rocky Mountain',
   active: true,
@@ -74,6 +81,7 @@ eu = Region.create!(
   priority: 1)
 
 
+# Resorts
 us_rocky_mountain.resorts.create!(
   name: 'Crested Butte',
   country: 'United States',
@@ -213,3 +221,14 @@ latam.resorts.create!(
   active: false,
   director_operations: 'Diego Velun',
   ttm_revenue_usd: 0)
+
+# Ski Brands
+atomic = SkiBrand.create!(name:'Atomic', does_racing:'true', year_founded:1955)
+head = SkiBrand.create!(name:'Head', does_racing:'true', year_founded:1950)
+line = SkiBrand.create!(name:'Line', does_racing:'false', year_founded:1995)
+armada = SkiBrand.create!(name:'Armada', does_racing:'false', year_founded:2002)
+
+# Skis
+bentChetler = Ski.create!(name:'Bent Chetler 100', for_jumps:'true', turn_radius:19.5, ski_brand_id: atomic.id)
+vantage = Ski.create!(name:'Vantage 90 Ti', for_jumps:'false', turn_radius:18.4, ski_brand_id: atomic.id)
+arv106 = Ski.create!(name:'ARV 106', for_jumps:'true', turn_radius:20.5, ski_brand_id: armada.id)

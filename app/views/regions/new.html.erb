@@ -14,8 +14,11 @@
   <br>
 
   <%= form.label :rvp_operations, 'RVP of Operations:' %>
-  <%= form.text_field :rvp_operations %><br>
+  <%= form.text_field :rvp_operations %>
+  <br>
   <%= form.label :priority, 'Priority:' %>
-  <%= form.text_field :priority %><br><br>
+  <%= form.select :priority, [1,2,3] %>
+  <br>
+  <br>
   <%= form.submit 'Create Region' %>
 <% end %>

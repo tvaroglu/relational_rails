@@ -40,7 +40,7 @@ RSpec.describe 'region edit page' do
     fill_in('Name:', with: 'US - Rocky Mountain')
     choose 'Yes'
     fill_in('RVP of Operations:', with: region.rvp_operations)
-    fill_in('Priority:', with: region.priority)
+    select(region.priority, from: 'Priority')
     click_button 'Update Region'
 
     expect(current_path).to eq("/regions/#{region.id}")

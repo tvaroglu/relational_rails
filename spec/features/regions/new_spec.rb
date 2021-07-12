@@ -33,7 +33,7 @@ RSpec.describe 'Region creation' do
     fill_in('Name:', with: region.name)
     choose 'Yes'
     fill_in('RVP of Operations:', with: region.rvp_operations)
-    fill_in('Priority:', with: region.priority)
+    select(region.priority, from: 'Priority')
     click_button 'Create Region'
 
     expect(current_path).to eq("/regions")

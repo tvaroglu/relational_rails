@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get '/parks/:id/edit', to: 'parks#edit'
   post '/parks', to: 'parks#create'
   patch '/parks/:id', to: 'parks#update'
-  get '/parks/:park_id/trails', to: 'park_trails#index'
+  get '/parks/:id/trails', to: 'park_trails#index'
+  get '/parks/:id/trails/new', to: 'park_trails#new'
+  post '/parks/:id/trails', to: 'park_trails#create'
 
   get '/trails', to: 'trails#index'
   get '/trails/:id', to: 'trails#show'

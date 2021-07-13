@@ -1,9 +1,15 @@
-<!-- <a href="/parks">Parks Index</a>
-<a href="/trails">Trails Index</a> -->
+<h1><%= @park.name %></h1>
+
+<br>
+<h2>Trails Index</h2>
+
+<%= link_to 'Create Trail', "/parks/#{@park.id}/trails/new" %>
+<br><br>
 
 <% @trails.each do |trail| %>
   <h3><%= trail.name %></h3>
   <p>Length: <%= trail.length %></p>
   <p>Elevation Gain: <%= trail.elevation_gain %></p>
   <p>Loop: <%= trail.loop %></p>
+  <br>
 <% end %>

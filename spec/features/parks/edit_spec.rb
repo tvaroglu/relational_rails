@@ -18,8 +18,10 @@ RSpec.describe 'Park update' do
                         county: "Jefferson",
                         parking_fee: 0,
                         dogs_allowed: false)
-    
+
     visit "/parks/#{park.id}"
+
+    expect(page).to have_content(park.name)
 
     click_link 'Update Park'
 

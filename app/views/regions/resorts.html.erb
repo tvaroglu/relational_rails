@@ -2,17 +2,17 @@
   <h1><%= link_to "Region: #{@region.name}", "/regions/#{@region.id}" %></h1>
 
   <form style="float:left;" action= <%= "/regions/#{@region.id}/resorts/new" %>>
-    <input type="submit" value="New Resort"/>
+    <input type="submit" value="Create Resort"/>
   </form>
   <br><br><br>
 
-  <h4><em>All Resorts:</em></h4>
+  <h3><em>All Resorts:</em></h3>
   <br>
-  
+
   <% @resorts.each do |resort| %>
-    <strong><%= link_to resort.name, "/resorts/#{resort.id}" %></strong>
-    <p>Country: <%= resort.country %></p>
+    <h5><%= link_to resort.name, "/resorts/#{resort.id}" %></h5>
     <p>State/Province: <%= resort.state_province %></p>
+    <p>Country: <%= resort.country %></p>
     <p>Currently Active: <%= resort.active %></p>
     <p>Director of Operations: <%= resort.director_operations %></p>
     <p>Last 12 Months Total Revenue ($MM): <%= (resort.ttm_revenue_usd / 1000000.to_f).round(1) %></p>

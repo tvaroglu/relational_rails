@@ -12,8 +12,8 @@ class RegionsController < ApplicationController
   end
 
   def create
-    region = Region.create(region_params)
-    redirect_to "/regions"
+    Region.create(region_params)
+    redirect_to '/regions'
   end
 
   def edit
@@ -31,9 +31,24 @@ class RegionsController < ApplicationController
     @resorts = @region.resorts
   end
 
-private
+  def new_resort
+    @region = Region.find(params[:id])
+  end
+
+  def create_new_resort
+    region = Region.find(params[:id])
+    region.resorts.create(resort_params)
+    redirect_to "/regions/#{region.id}/resorts"
+  end
+
+  private
   def region_params
     params.permit(:name, :active, :rvp_operations, :priority)
+  end
+
+  private
+  def resort_params
+    params.permit(:name, :country, :state_province, :active, :director_operations, :ttm_revenue_usd)
   end
 
 end

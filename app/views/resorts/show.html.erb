@@ -1,8 +1,9 @@
 <div style="padding-left:5px;">
-  <h1><%= @resort.name %></h1>
+  <h2><%= "Resort: #{@resort.name}" %></h2>
+  <br>
 
-  <p>Country: <%= @resort.country %></p>
   <p>State/Province: <%= @resort.state_province %></p>
+  <p>Country: <%= @resort.country %></p>
   <p>Currently Active: <%= @resort.active %></p>
   <p>Director of Operations: <%= @resort.director_operations %></p>
   <p>Last 12 Months Total Revenue ($MM): <%= (@resort.ttm_revenue_usd / 1000000.to_f).round(1) %></p>

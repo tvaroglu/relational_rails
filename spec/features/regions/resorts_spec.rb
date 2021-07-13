@@ -134,16 +134,19 @@ RSpec.describe "region's resorts index" do
 
       visit "/regions/#{region.id}/resorts/new"
       # save_and_open_page
-
       fill_in('Name:', with: resort.name)
       fill_in('Country:', with: resort.country)
       fill_in('State/Province:', with: resort.state_province)
       choose 'No'
       fill_in('Director of Operations:', with: resort.director_operations)
-      fill_in('Last 12 Months Total Revenue ($MM):', with: resort.ttm_revenue_usd)
+      fill_in('Last 12 Months Total Revenue ($USD):', with: resort.ttm_revenue_usd)
       click_button('Create Resort')
 
       expect(current_path).to eq("/regions/#{region.id}/resorts")
+
+      visit "/regions/#{region.id}/resorts"
+      # save_and_open_page
+
       expect(page).to have_content(resort.name)
       expect(page).to have_content(resort.created_at)
       expect(page).to have_content(resort.updated_at)

@@ -1,11 +1,14 @@
 class SkiBrandSkisController < ApplicationController
   def index
-    binding.pry
     @skis = SkiBrand.find(params[:id]).skis
+    @brand_id = params[:id]
     @ski_min = SkiBrand.find(params[:id]).skis.order('turn_radius asc').first.turn_radius
     @ski_max = SkiBrand.find(params[:id]).skis.order('turn_radius desc').first.turn_radius
     if params[:sort] == 'alpha'
-      @skis = SkiBrand.find(params[:id]).skis.order_alphabetically('name')
+      @skis = @skis.skis.order_alphabetically('name')
+
+    elsif params[:turn_radius]
+      @skis = @skis.where('turn_radius > ?', ski_params[:turn_radius])
     end
   end
 

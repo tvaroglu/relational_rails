@@ -7,4 +7,8 @@ class SkiBrand < ApplicationRecord
     group('ski_brands.id').
     order('ski_count desc')
   end
+
+  def ski_count
+    skis.count
+  end
 end

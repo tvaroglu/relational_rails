@@ -10,7 +10,14 @@
       <li class="nav-item">
         <a class="nav-link" href="/ski_brands/<%=@skis[0].ski_brand.id%>/skis?sort=alpha">Sort Alphabetically</a>
       </li>
+      <li class="nav-item">
+      </li>
     </ul>
+    <%= bootstrap_form_tag url: "/ski_brands/#{@skis[0].ski_brand.id}/skis", method: :get do |form| %>
+    <%= form.number_field :turn_radius,min: "#{@ski_min}", max:"#{@ski_max}" %>
+    <!-- <input type="range" name="rangeInput" min=<%=@ski_min%> max=<%=@ski_max%> onchange="updateTextInput(this.value);"> -->
+    <%= form.submit 'Filter Ski By Turn Radius' %>
+  <% end %>
   </div>
   <div class="row justify-content-center">
     <div class="col-6">
@@ -32,3 +39,8 @@
       </table>
     </div>
   </div>
+  <script>
+    function updateTextInput(val) {
+      document.getElementById('textInput').value=val; 
+    }
+  </script>

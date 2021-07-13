@@ -7,7 +7,6 @@ class SkiBrandsController < ApplicationController
   end
   def show
     @brand = SkiBrand.find(params[:id])
-    @ski_count = @brand.skis.count
   end
 
   def new

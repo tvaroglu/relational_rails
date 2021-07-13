@@ -1,0 +1,22 @@
+<br><h1>Edit Park</h1>
+
+<%= form_with url: "/parks/#{@park.id}", method: :patch, local: true do |form| %>
+  <br>
+  <%= form.label :name, 'Name:' %>
+  <%= form.text_field :name %>
+  <br><br>
+  <%= form.label :state, 'State:' %>
+  <%= form.text_field :state %>
+  <br><br>
+  <%= form.label :county, 'County:' %>
+  <%= form.text_field :county %>
+  <br><br>
+  <%= form.label :parking_fee, 'Parking Fee:  $' %>
+  <%= form.number_field :parking_fee, in: 0..20 %>
+  <br><br>
+  <%= form.label :dogs_allowed, 'Dogs Allowed?' %>
+  <%= form.select :dogs_allowed, ['Yes', 'No'] %>
+  <br><br>
+
+  <%= form.submit 'Update Park' %>
+<% end %>

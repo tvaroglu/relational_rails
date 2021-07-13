@@ -1,0 +1,22 @@
+<h1><%= @trail.name %></h1>
+
+<br>
+<h2>Edit Trail:</h2>
+
+<%= form_with url: "/trails/#{@trail.id}", method: :patch, local: true do |form| %>
+  <br>
+  <%= form.label :name, 'Name:' %>
+  <%= form.text_field :name %>
+  <br><br>
+  <%= form.label :length, 'Length:' %>
+  <%= form.number_field :length %>
+  <br><br>
+  <%= form.label :elevation_gain, 'Elevation Gain:' %>
+  <%= form.number_field :elevation_gain %>
+  <br><br>
+  <%= form.label :loop, 'Loop?' %>
+  <%= form.select :loop, ['Yes', 'No'] %>
+  <br><br>
+
+  <%= form.submit 'Update Trail' %>
+<% end %>

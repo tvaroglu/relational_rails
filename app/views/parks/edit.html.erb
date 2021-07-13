@@ -1,4 +1,7 @@
-<br><h1>Edit Park</h1>
+<h1><%= @park.name %></h1>
+
+<br>
+<h2>Edit Park:</h2>
 
 <%= form_with url: "/parks/#{@park.id}", method: :patch, local: true do |form| %>
   <br>

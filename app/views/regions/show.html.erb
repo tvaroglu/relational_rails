@@ -6,9 +6,10 @@
   <br><br>
 
   <% if @region.resorts.length == 1 %>
-    <strong><%= link_to "View All (#{@region.resorts.length}) Resort", "/regions/#{@region.id}/resorts" %></strong>
+
+    <strong><%= link_to "View All (#{@region.resort_count}) Resort", "/regions/#{@region.id}/resorts" %></strong>
   <% else %>
-    <strong><%= link_to "View All (#{@region.resorts.length}) Resorts", "/regions/#{@region.id}/resorts" %></strong>
+    <strong><%= link_to "View All (#{@region.resort_count}) Resorts", "/regions/#{@region.id}/resorts" %></strong>
   <% end %>
   <br><br>
 

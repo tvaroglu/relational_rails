@@ -29,7 +29,7 @@ RSpec.describe 'resort show page' do
     visit "/resorts/#{resort_1.id}"
     # save_and_open_page
 
-    expect(page).to have_content(resort_1.name)
+    expect(page).to have_content("Resort: #{resort_1.name}")
     expect(page).to have_content("Country: #{resort_1.country}")
     expect(page).to have_content("State/Province: #{resort_1.state_province}")
     expect(page).to have_content("Currently Active: #{resort_1.active}")

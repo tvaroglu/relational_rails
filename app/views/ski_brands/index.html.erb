@@ -1,10 +1,40 @@
-<table>
-  <tr>
-    <th> Name </th>
-  </tr>
-  <% @brands.each do |brand| %>
-    <tr>
-      <td> <%= brand.name %> </td>
-    </tr>
-  <% end %>
-</table>
+<div class="col-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page">Ski Brands</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/ski_brands/new">New Ski Brand</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">sort by number of skis</a>
+    </li>
+  </ul>
+</div>
+<p></p>
+<div class="row justify-content-center">
+  <div class="col-4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Does Racing?</th>
+          <th>Year Founded</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <% @brands.each do |brand| %>
+        <tr id="<%=brand.name%>">
+          <td><%= brand.name %></td>
+          <td><%= brand.does_racing %></td>
+          <td><%= brand.year_founded %></td>
+          <td>    <%= button_to "Update #{brand.name}", "/ski_brands/#{brand.id}/edit", method: :get,:class => "btn btn-primary float-left"  %>
+          </td>
+          <td><%= button_to "Delete #{brand.name}", "/ski_brands/#{brand.id}", method: :delete,:class => "btn btn-danger float-right" , data: { confirm: 'Are you sure?'} %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -40,7 +40,7 @@ RSpec.describe 'application layout' do
       click_on "Resorts Index"
       expect(current_path).to eq("/resorts")
     end
-    xit 'links to skis index' do
+    it 'links to skis index' do
       atomic = SkiBrand.create!(name:'Atomic', does_racing:'true', year_founded:1955)
 
       visit "/ski_brands"
@@ -105,7 +105,7 @@ RSpec.describe 'application layout' do
       click_on "Regions Index"
       expect(current_path).to eq("/regions")
     end
-    xit 'links to ski brands index' do
+    it 'links to ski brands index' do
       atomic = SkiBrand.create!(name:'Atomic', does_racing:'true', year_founded:1955)
       bent_chetler = Ski.create!(name:'Bent Chetler 100', for_jumps:'true', turn_radius:19.5, ski_brand_id: atomic.id)
 

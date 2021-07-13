@@ -44,4 +44,11 @@ RSpec.describe 'Ski brands -Skis Index' do
     click_on('Filter Ski By Turn Radius')
     expect(page).to_not have_content(@bentChetler.name)
   end
+
+  it '24 - has a link to delete each ski, which returns back to ski b ski index' do
+    within(@bentChetler.id) do
+      click_on('Delete')
+    end
+    expect(page).to_not have_content(@bentChetler.name)
+  end
 end

@@ -30,24 +30,23 @@ RSpec.describe 'ski brands Index' do
     click_on('New Ski Brand')
     expect(current_path).to eq("/ski_brands/new")
     fill_in 'name', with: 'Volkl'
-    select 'true', from: "does_racing"
+    check 'racing'
     fill_in 'year_founded', with: '1959'
-    click_on('submit')
+    click_on('commit')
     expect(current_path).to eq("/ski_brands")
     within("//tr[@id='Volkl']") do
       expect(page).to have_content('Volkl')
       expect(page).to have_content('1959')
-      expect(page).to have_content('true')
     end
   end
 
   it '17 - each brand has a link to edit, which updates and returns to /ski_brands' do
     within("//tr[@id='Head']") do
-      click_on('edit')
+      click_on('Update Head')
     end
-    expect(current_path).to eq("/ski_brands/:#{@head.id}/edit")
+    expect(current_path).to eq("/ski_brands/#{@head.id}/edit")
     fill_in 'year_founded', with: '2005'
-    click_on('submit')
+    click_on('commit')
     expect(current_path).to eq("/ski_brands")
     within("//tr[@id='Head']") do
       expect(page).to have_content("2005")
@@ -56,7 +55,7 @@ RSpec.describe 'ski brands Index' do
 
   it 'has a delete button for each brand, which deletes it and returns to index' do
     within("//tr[@id='Head']") do
-      click_on('delete')
+      click_on('Delete Head')
     end
     expect(current_path).to eq("/ski_brands")
     expect(page).to_not have_content("Head")

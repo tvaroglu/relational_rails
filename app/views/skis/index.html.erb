@@ -1,0 +1,23 @@
+<div class="col-6">
+  <h3>All Skis</h3>
+</div>
+<div class="row justify-content-center">
+  <div class="col-6">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>For Jumps?</th>
+          <th>Turn Radius</th>
+        </tr>
+      </thead>
+      <% @skis.each do |ski| %>
+      <tr id="<%= ski.name %>">
+        <td><%= ski.name %></td>
+        <td><%= ski.for_jumps %></td>
+        <td><%= ski.turn_radius %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

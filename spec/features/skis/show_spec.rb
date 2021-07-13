@@ -13,7 +13,6 @@ RSpec.describe 'skis Show' do
     visit "/skis/#{vantage.id}"
 
     expect(page).to have_content(vantage.name)
-    expect(page).to_not have_content(vantage.name)
     expect(page).to_not have_content(arv106.name)
 
   end

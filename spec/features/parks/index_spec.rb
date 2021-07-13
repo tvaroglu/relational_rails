@@ -21,8 +21,8 @@ RSpec.describe 'Park index' do
 
     expect(page).to have_content(park_1.name)
     expect(page).to have_content(park_2.name)
-    expect(page).to have_content("created at: #{park_1.created_at}")
-    expect(page).to have_content("created at: #{park_2.created_at}")
+    expect(page).to have_content("Created At: #{park_1.created_at}")
+    expect(page).to have_content("Created At: #{park_2.created_at}")
   end
 
   # User Story 6:

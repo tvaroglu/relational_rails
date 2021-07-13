@@ -1,6 +1,9 @@
 class SkiBrandsController < ApplicationController
   def index
     @brands = SkiBrand.all
+    if params[:sort] == 'ski_count'
+      @brands = @brands.order_by_ski_count
+    end
   end
   def show
     @brand = SkiBrand.find(params[:id])

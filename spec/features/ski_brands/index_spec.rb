@@ -53,7 +53,7 @@ RSpec.describe 'ski brands Index' do
     end
   end
 
-  it 'has a delete button for each brand, which deletes it and returns to index' do
+  it '22 - has a delete button for each brand, which deletes it and returns to index' do
     within("//tr[@id='Head']") do
       click_on('Delete Head')
     end
@@ -65,6 +65,5 @@ RSpec.describe 'ski brands Index' do
     click_on('sort by number of skis')
     expect(current_path).to eq("/ski_brands")
     expect('Atomic').to appear_before('Armada')
-    expect('Armada').to appear_before('Head')
   end
 end

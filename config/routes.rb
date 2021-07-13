@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   get 'ski_brands/new', to: 'ski_brands#new'
   post 'ski_brands', to: 'ski_brands#create'
   get '/ski_brands/:id', to: 'ski_brands#show'
-  get 'ski_brands/:id/skis', to: 'ski_brand_skis#index', as: 'ski_brand_skis'
   get 'ski_brands/:id/edit', to: 'ski_brands#edit', as: 'ski_brand_edit'
   patch 'ski_brands/:id', to: 'ski_brands#update'
   delete '/ski_brands/:id', to: 'ski_brands#delete'
@@ -33,4 +32,8 @@ Rails.application.routes.draw do
   get 'skis/new', to: 'skis#new'
   post 'skis', to: 'skis#create'
   get '/skis/:id', to: 'skis#show'
+
+  get 'ski_brands/:id/skis', to: 'ski_brand_skis#index', as: 'ski_brand_skis'
+  get 'ski_brands/:id/skis/new', to: 'ski_brand_skis#new', as: 'ski_brand_skis_new'
+  post 'ski_brands/:id/skis', to: 'ski_brand_skis#create'
 end

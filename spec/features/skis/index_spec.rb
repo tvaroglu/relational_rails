@@ -19,21 +19,4 @@ RSpec.describe 'skis Index' do
     expect(page).to have_content(@arv106.name)
 
   end
-
-  it '13 - has a link to create new ski, which returns to index with newly created ski' do
-    click_on('Create Ski')
-    expect(current_path).to eq("/skis/new")
-    fill_in 'name', with: 'Kore 99'
-    fill_in 'turn_radius', with: '18.5'
-    page.choose('Head')
-    click_on('commit')
-    expect(current_path).to eq("/skis")
-    expect(page).to have_content("Kore 99")
-  end
-
-  it '16 - has a link to sort skis alphabetically' do
-    click_on('Sort Alphabetically')
-    expect('ARV 106').to appear_before('Bent Chetler 100')
-    expect('Bent Chetler 100').to appear_before('Vantage 90 Ti')
-  end
 end

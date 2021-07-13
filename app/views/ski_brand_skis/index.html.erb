@@ -1,12 +1,34 @@
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Meant for jumps?</th>
-    <th>Turn Radius</th>
-  </tr>
-  <% @skis.each do |ski| %>
-    <%= ski.name %>
-    <%= ski.for_jumps %>
-    <%= ski.turn_radius %>
-  <% end %>
-</table>
+  <div class="col-6">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page">All Skis</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/ski_brands/<%=params[:id]%>/skis/new">Create Ski</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/ski_brands/<%=@skis[0].ski_brand.id%>/skis?sort=alpha">Sort Alphabetically</a>
+      </li>
+    </ul>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>For Jumps?</th>
+            <th>Turn Radius</th>
+          </tr>
+        </thead>
+        <% @skis.each do |ski| %>
+        <tr id="<%= ski.name %>">
+          <td><%= ski.name %></td>
+          <td><%= ski.for_jumps %></td>
+          <td><%= ski.turn_radius %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>

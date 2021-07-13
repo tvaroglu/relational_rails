@@ -1,0 +1,9 @@
+<div class="col-6">
+  <%= bootstrap_form_tag url: "/ski_brands/#{params[:id]}/skis", method: :post do |form| %>
+    <%= form.text_field :name %>
+    <%= form.check_box :for_jumps %>
+    <%= form.number_field :turn_radius %>
+
+  <%= form.submit 'Create' %>
+<% end %>
+</div>

@@ -25,6 +25,7 @@ RSpec.describe 'skis Index' do
     expect(current_path).to eq("/skis/new")
     fill_in 'name', with: 'Kore 99'
     fill_in 'turn_radius', with: '18.5'
+    page.choose('Head')
     click_on('commit')
     expect(current_path).to eq("/skis")
     expect(page).to have_content("Kore 99")

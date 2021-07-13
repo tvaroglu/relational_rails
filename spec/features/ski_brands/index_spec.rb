@@ -47,10 +47,8 @@ RSpec.describe 'ski brands Index' do
     expect(current_path).to eq("/ski_brands/#{@head.id}/edit")
     fill_in 'year_founded', with: '2005'
     click_on('commit')
-    expect(current_path).to eq("/ski_brands")
-    within("//tr[@id='Head']") do
-      expect(page).to have_content("2005")
-    end
+    expect(current_path).to eq("/ski_brands/#{@head.id}")
+    expect(page).to have_content("2005")
   end
 
   it '22 - has a delete button for each brand, which deletes it and returns to index' do

@@ -40,6 +40,8 @@ RSpec.describe 'ski brands Show' do
   end
 
   it '19 - has a link to delete the brand, which then redirects to index' do
-
+    click_on("Delete")
+    expect(current_path).to eq("/ski_brands")
+    expect(page).to_not have_content("Atomic")
   end
 end

@@ -9,9 +9,5 @@
   <% @regions.each do |region| %>
     <h3><%= link_to region.name, "/regions/#{region.id}" %></h3>
     <p>Created At: <%=region.created_at %></p>
-    <form style="float:left;" action= <%= "/regions/#{region.id}/edit" %>>
-      <input type="submit" value="Update Region"/>
-    </form>
-    <br><br><br>
   <% end %>
 </div>

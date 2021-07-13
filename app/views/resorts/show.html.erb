@@ -1,6 +1,9 @@
 <div style="padding-left:5px;">
   <h2><%= "Resort: #{@resort.name}" %></h2>
-  <br>
+  <form style="float:left;" action= <%= "/resorts/#{@resort.id}/edit" %>>
+    <input type="submit" value="Update Resort"/>
+  </form>
+  <br><br>
 
   <p>State/Province: <%= @resort.state_province %></p>
   <p>Country: <%= @resort.country %></p>

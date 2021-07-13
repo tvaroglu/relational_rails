@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get '/resorts', to: 'resorts#index'
   get '/resorts/:id', to: 'resorts#show'
+  get '/resorts/:id/edit', to: 'resorts#edit'
+  patch '/resorts/:id/edit', to: 'resorts#update'
 
   get '/ski_brands', to: 'ski_brands#index'
   get '/ski_brands/:id', to: 'ski_brands#show'

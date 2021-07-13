@@ -1,3 +1,5 @@
 <p><%= @brand.name %></p>
+<p><%= @brand.does_racing == true ? 'They have a race team' : "They are lame and don't do racing "%></p>
+<p>year founded: <%= @brand.year_founded %></p>
 <p>Number of ski currently made: <%= @ski_count %></p>
 <%= link_to "#{@brand.name} Skis", ski_brand_skis_path(@brand.id) %>

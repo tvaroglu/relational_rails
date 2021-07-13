@@ -27,13 +27,15 @@
             <th>Name</th>
             <th>For Jumps?</th>
             <th>Turn Radius</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <% @skis.each do |ski| %>
-        <tr id="<%= ski.name %>">
+        <tr id="ski-<%=ski.id%>">
           <td><%= ski.name %></td>
           <td><%= ski.for_jumps %></td>
           <td><%= ski.turn_radius %></td>
+          <td><%= link_to "Delete", "/ski_brands/#{@brand_id}/skis/#{ski.id}", method: :delete %></td>
         </tr>
         <% end %>
       </table>

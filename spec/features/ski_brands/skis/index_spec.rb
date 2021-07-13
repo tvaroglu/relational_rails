@@ -46,8 +46,9 @@ RSpec.describe 'Ski brands -Skis Index' do
   end
 
   it '24 - has a link to delete each ski, which returns back to ski b ski index' do
-    within(@bentChetler.id) do
-      click_on('Delete')
+    print page.html
+    within("tr[id=ski-#{@bentChetler.id.to_s}]") do
+      click_link('Delete')
     end
     expect(page).to_not have_content(@bentChetler.name)
   end

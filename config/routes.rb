@@ -33,7 +33,8 @@ Rails.application.routes.draw do
   post 'skis', to: 'skis#create'
   get '/skis/:id', to: 'skis#show'
 
-  get 'ski_brands/:id/skis', to: 'ski_brand_skis#index', as: 'ski_brand_skis'
-  get 'ski_brands/:id/skis/new', to: 'ski_brand_skis#new', as: 'ski_brand_skis_new'
-  post 'ski_brands/:id/skis', to: 'ski_brand_skis#create'
+  get 'ski_brands/:ski_brand_id/skis', to: 'ski_brand_skis#index', as: 'ski_brand_skis'
+  get 'ski_brands/:ski_brand_id/skis/new', to: 'ski_brand_skis#new', as: 'ski_brand_skis_new'
+  post 'ski_brands/:ski_brand_id/skis', to: 'ski_brand_skis#create'
+  delete '/ski_brands/:ski_brand_id/skis/:ski_id', to: 'ski_brand_skis#delete'
 end

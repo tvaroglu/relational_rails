@@ -1,14 +1,17 @@
-<h1>Resorts Index</h1>
-
-<% @resorts.each do |resort| %>
-  <strong><%= link_to resort.name, "/resorts/#{resort.id}" %></strong>
-  <br>
-  <p>Country: <%= resort.country %></p>
-  <p>State/Province: <%= resort.state_province %></p>
-  <p>Currently Active: <%= resort.active %></p>
-  <p>Director of Operations: <%= resort.director_operations %></p>
-  <p>Last 12 Months Total Revenue ($MM): <%= (resort.ttm_revenue_usd / 1000000.to_f).round(1) %></p>
-  <p>Created At: <%= resort.created_at %></p>
-  <p>Last Updated At: <%= resort.updated_at %></p>
+<div style="padding-left:5px;">
+  <h1>Resorts Index</h1>
   <br><br>
-<% end %>
+
+  <% @resorts.each do |resort| %>
+    <strong><%= link_to resort.name, "/resorts/#{resort.id}" %></strong>
+    <br><br>
+    <p>State/Province: <%= resort.state_province %></p>
+    <p>Country: <%= resort.country %></p>
+    <p>Currently Active: <%= resort.active %></p>
+    <p>Director of Operations: <%= resort.director_operations %></p>
+    <p>Last 12 Months Total Revenue ($MM): <%= (resort.ttm_revenue_usd / 1000000.to_f).round(1) %></p>
+    <p>Created At: <%= resort.created_at %></p>
+    <p>Last Updated At: <%= resort.updated_at %></p>
+    <br><br>
+  <% end %>
+</div>

@@ -1,12 +1,16 @@
-<h1><%= @region.name %></h1>
-<% if @region.resorts.length == 1 %>
-  <%= link_to "View All (#{@region.resorts.length}) Resort", "/regions/#{@region.id}/resorts" %>
-<% else %>
-  <%= link_to "View All (#{@region.resorts.length}) Resorts", "/regions/#{@region.id}/resorts" %>
-<% end %>
+<div style="padding-left:5px;">
+  <h1><%= "Region: #{@region.name}" %></h1>
 
-<p>Priority: <%= @region.priority %></p>
-<p>Currently Active: <%= @region.active %></p>
-<p>RVP of Operations: <%= @region.rvp_operations %></p>
-<p>Created At: <%= @region.created_at %></p>
-<p>Last Updated At: <%= @region.updated_at %></p>
+  <% if @region.resorts.length == 1 %>
+    <strong><%= link_to "View All (#{@region.resorts.length}) Resort", "/regions/#{@region.id}/resorts" %></strong>
+  <% else %>
+    <strong><%= link_to "View All (#{@region.resorts.length}) Resorts", "/regions/#{@region.id}/resorts" %></strong>
+  <% end %>
+  <br><br>
+
+  <p>Priority: <%= @region.priority %></p>
+  <p>Currently Active: <%= @region.active %></p>
+  <p>RVP of Operations: <%= @region.rvp_operations %></p>
+  <p>Created At: <%= @region.created_at %></p>
+  <p>Last Updated At: <%= @region.updated_at %></p>
+</div>

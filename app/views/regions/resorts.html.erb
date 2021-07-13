@@ -1,15 +1,23 @@
-<h1><%= link_to @region.name, "/regions/#{@region.id}" %></h1>
-<br>
+<div style="padding-left:5px;">
+  <h1><%= link_to "Region: #{@region.name}", "/regions/#{@region.id}" %></h1>
 
-<% @resorts.each do |resort| %>
-  <strong><%= link_to resort.name, "/resorts/#{resort.id}" %></strong>
+  <form style="float:left;" action= <%= "/regions/#{@region.id}/resorts/new" %>>
+    <input type="submit" value="New Resort"/>
+  </form>
+  <br><br><br>
+
+  <h4><em>All Resorts:</em></h4>
   <br>
-  <p>Country: <%= resort.country %></p>
-  <p>State/Province: <%= resort.state_province %></p>
-  <p>Currently Active: <%= resort.active %></p>
-  <p>Director of Operations: <%= resort.director_operations %></p>
-  <p>Last 12 Months Total Revenue ($MM): <%= (resort.ttm_revenue_usd / 1000000.to_f).round(1) %></p>
-  <p>Created At: <%= resort.created_at %></p>
-  <p>Last Updated At: <%= resort.updated_at %></p>
-  <br><br>
-<% end %>
+  
+  <% @resorts.each do |resort| %>
+    <strong><%= link_to resort.name, "/resorts/#{resort.id}" %></strong>
+    <p>Country: <%= resort.country %></p>
+    <p>State/Province: <%= resort.state_province %></p>
+    <p>Currently Active: <%= resort.active %></p>
+    <p>Director of Operations: <%= resort.director_operations %></p>
+    <p>Last 12 Months Total Revenue ($MM): <%= (resort.ttm_revenue_usd / 1000000.to_f).round(1) %></p>
+    <p>Created At: <%= resort.created_at %></p>
+    <p>Last Updated At: <%= resort.updated_at %></p>
+    <br>
+  <% end %>
+</div>

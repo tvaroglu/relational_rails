@@ -15,7 +15,10 @@ Rails.application.routes.draw do
   get '/regions/:id/edit', to: 'regions#edit'
   post '/regions', to: 'regions#create'
   patch '/regions/:id/edit', to: 'regions#update'
+
   get '/regions/:id/resorts', to: 'regions#resorts'
+  get '/regions/:id/resorts/new', to: 'regions#new_resort'
+  post '/regions/:id/resorts', to: 'regions#create_new_resort'
 
   get '/resorts', to: 'resorts#index'
   get '/resorts/:id', to: 'resorts#show'

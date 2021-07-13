@@ -29,10 +29,10 @@ class SkiBrandsController < ApplicationController
   def update
     @ski_brand = SkiBrand.find(params[:id])
     if @ski_brand.update(brand_params)
-      redirect_to '/ski_brands'
+      redirect_to "/ski_brands/#{@ski_brand.id}"
     else
       flash[:alert] = "Error: #{error_message(@ski_brand.errors)}"
-      redirect_to '/ski_brands/edit'
+      redirect_to "/ski_brands/#{@ski_brand.id}/edit"
     end
   end
 

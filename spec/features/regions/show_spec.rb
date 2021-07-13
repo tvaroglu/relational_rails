@@ -35,7 +35,7 @@ RSpec.describe 'region show page' do
     visit "/regions/#{region.id}"
     # save_and_open_page
 
-    expect(page).to have_content("Region: #{region.name}")
+    expect(page).to have_content("REGION: #{region.name}")
     expect(page).to have_content("Priority: #{region.priority}")
     expect(page).to have_content("Currently Active: #{region.active}")
     expect(page).to have_content("RVP of Operations: #{region.rvp_operations}")

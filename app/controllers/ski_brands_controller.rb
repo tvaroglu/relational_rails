@@ -37,7 +37,7 @@ class SkiBrandsController < ApplicationController
   end
 
   def delete
-    SkiBrand.find(brand_params[:id]).delete
+    SkiBrand.find(brand_params[:id]).destroy
     redirect_to '/ski_brands'
   end
   private

@@ -1,5 +1,5 @@
 class SkiBrand < ApplicationRecord
-  has_many :skis
+  has_many :skis, :dependent => :destroy
 
   def self.order_by_ski_count
     select('ski_brands.*, count(skis.id) AS ski_count').

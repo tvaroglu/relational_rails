@@ -16,6 +16,7 @@ RSpec.describe 'Parks trails index' do
                           elevation_gain: 320,
                           loop: false)
   end
+
 # User Story 5
   # As a visitor
   # When I visit '/parents/:parent_id/child_table_name'
@@ -33,7 +34,7 @@ RSpec.describe 'Parks trails index' do
     expect(page).to have_content("Loop: #{@trail_2.loop}")
   end
 
-  # User Story 8:
+# User Story 8:
   # As a visitor
   # When I visit any page on the site
   # Then I see a link at the top of the page that takes me to the Child Index
@@ -45,7 +46,7 @@ RSpec.describe 'Parks trails index' do
     expect(current_path).to eq('/trails')
   end
 
-  # User Story 9:
+# User Story 9:
   # As a visitor
   # When I visit any page on the site
   # Then I see a link at the top of the page that takes me to the Parent Index
@@ -57,23 +58,38 @@ RSpec.describe 'Parks trails index' do
     expect(current_path).to eq('/parks')
   end
 
-  # User Story 18, Child Update From Childs Index Page (x1)
-    # As a visitor
-    # When I visit the `child_table_name` index page or a parent `child_table_name` index page
-    # Next to every child, I see a link to edit that child's info
-    # When I click the link
-    # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
-    it 'has a link to update an exisiting trail' do
-      visit "/parks/#{@park.id}/trails"
+# User Story 16, Sort Parent's Children in Alphabetical Order by name (x2)
+  # As a visitor
+  # When I visit the Parent's children Index Page
+  # Then I see a link to sort children in alphabetical order
+  # When I click on the link
+  # I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
+  it 'has link to sort trails alphabetically' do
+    visit "/parks/#{@park.id}/trails"
 
-      click_on("Edit #{@trail_1.name}")
+    click_on 'Sort Alphabetically'
 
-      expect(current_path).to eq("/trails/#{@trail_1.id}/edit")
+    expect(current_path).to eq("/parks/#{@park.id}/trails")
+    expect(@trail_2.name).to appear_before(@trail_1.name)
+  end
 
-      visit "/parks/#{@park.id}/trails"
+# User Story 18, Child Update From Childs Index Page (x1)
+  # As a visitor
+  # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+  # Next to every child, I see a link to edit that child's info
+  # When I click the link
+  # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
+  it 'has a link to update an exisiting trail' do
+    visit "/parks/#{@park.id}/trails"
 
-      click_on("Edit #{@trail_2.name}")
+    click_on("Edit #{@trail_1.name}")
 
-      expect(current_path).to eq("/trails/#{@trail_2.id}/edit")
-    end
+    expect(current_path).to eq("/trails/#{@trail_1.id}/edit")
+
+    visit "/parks/#{@park.id}/trails"
+
+    click_on("Edit #{@trail_2.name}")
+
+    expect(current_path).to eq("/trails/#{@trail_2.id}/edit")
+  end
 end

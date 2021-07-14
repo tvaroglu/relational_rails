@@ -3,7 +3,8 @@
 <br>
 <h2>Trails Index</h2>
 
-<%= link_to 'Create Trail', "/parks/#{@park.id}/trails/new" %>
+<%= link_to 'Create Trail', "/parks/#{@park.id}/trails/new" %>&nbsp;
+<%= link_to 'Sort Alphabetically', "/parks/#{@park.id}/trails?sorted=true" %>
 <br><br>
 
 <% @trails.each do |trail| %>

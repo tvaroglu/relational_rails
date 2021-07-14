@@ -3,10 +3,9 @@
   <form style="float:left;" action= <%= "/regions/#{@region.id}/edit" %>>
     <input type="submit" value="Update Region"/>
   </form>
-  <br><br>
+  <br><br><br>
 
-  <% if @region.resorts.length == 1 %>
-
+  <% if @region.resort_count == 1 %>
     <strong><%= link_to "View All (#{@region.resort_count}) Resort", "/regions/#{@region.id}/resorts" %></strong>
   <% else %>
     <strong><%= link_to "View All (#{@region.resort_count}) Resorts", "/regions/#{@region.id}/resorts" %></strong>

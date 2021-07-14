@@ -69,10 +69,10 @@ RSpec.describe 'resorts index page' do
     expect(current_path).to eq("/resorts/#{resort.id}")
   end
 
-# User Story 15, Child Index only shows `true` Records (x2)
-  # As a visitor
-  # When I visit the child index
-  # Then I only see records where the boolean column is `true`
+  # User Story 15, Child Index only shows `true` Records (x3)
+    # As a visitor
+    # When I visit the child index
+    # Then I only see records where the boolean column is `true`
   it 'only shows active resorts' do
     region = Region.create!(
       name: 'US - Rocky Mountain',
@@ -107,6 +107,33 @@ RSpec.describe 'resorts index page' do
     expect(page).to have_content("Last Updated At: #{resort_1.updated_at}")
 
     expect(page).to_not have_content(resort_2.name)
+  end
+
+  # User Story 18, Child Update From Childs Index Page (x1)
+    # As a visitor
+    # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+    # Next to every child, I see a link to edit that child's info
+    # When I click the link
+    # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
+  it 'links to the child edit form' do
+    region = Region.create!(
+      name: 'US - Rocky Mountain',
+      active: true,
+      rvp_operations: 'Fred "Shreddy" McGnar',
+      priority: 1)
+    resort = region.resorts.create!(
+      name: 'Crested Butte',
+      country: 'United States',
+      state_province: 'CO',
+      active: true,
+      director_operations: 'Molly Hauck',
+      ttm_revenue_usd: 170530257)
+
+    visit '/resorts'
+    # save_and_open_page
+    click_on 'Update Resort'
+
+    expect(current_path).to eq("/resorts/#{resort.id}/edit")
   end
 
 end

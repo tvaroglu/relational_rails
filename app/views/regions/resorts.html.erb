@@ -11,7 +11,11 @@
   <br><br><br>
 
   <% @resorts.each do |resort| %>
-    <h5><%= link_to resort.name, "/resorts/#{resort.id}" %></h5>
+    <h5 style="float:left; padding-top:4px; padding-right:10px;"><%= link_to resort.name, "/resorts/#{resort.id}" %></h5>
+    <form style="float:left; padding-top:2px;" action= <%= "/resorts/#{resort.id}/edit" %>>
+      <input type="submit" value="Update Resort"/>
+    </form>
+    <br><br>
     <p>State/Province: <%= resort.state_province %></p>
     <p>Country: <%= resort.country %></p>
     <p>Currently Active: <%= resort.active %></p>

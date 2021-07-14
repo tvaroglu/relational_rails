@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'resort edit page' do
-  # User Story 14, Child Update (x2)
+  # User Story 14, Child Update (x3)
     # As a visitor
     # When I visit a Child Show page
     # Then I see a link to update that Child "Update Child"

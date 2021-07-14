@@ -90,6 +90,68 @@ RSpec.describe "region's resorts index" do
 
       expect(current_path).to eq("/regions/#{region.id}")
     end
+
+    # User Story 16, Sort Parent's Children in Alphabetical Order by name (x3)
+      # As a visitor
+      # When I visit the Parent's children Index Page
+      # Then I see a link to sort children in alphabetical order
+      # When I click on the link
+      # I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
+    it 'can sort associated resorts in alphabetical order' do
+      region = Region.create!(
+        name: 'US - Rocky Mountain',
+        active: true,
+        rvp_operations: 'Fred "Shreddy" McGnar',
+        priority: 1)
+      resort_1 = region.resorts.create!(
+        name: 'Crested Butte',
+        country: 'United States',
+        state_province: 'CO',
+        active: true,
+        director_operations: 'Molly Hauck',
+        ttm_revenue_usd: 170530257)
+      resort_2 = region.resorts.create!(
+        name: 'Breckenridge',
+        country: 'United States',
+        state_province: 'CO',
+        active: true,
+        director_operations: 'Doug Lowell',
+        ttm_revenue_usd: 227373675)
+
+      visit "/regions/#{region.id}/resorts"
+      # save_and_open_page
+      expect(resort_1.name).to appear_before(resort_2.name)
+
+      click_on 'Sort Alphabetically'
+      expect(resort_2.name).to appear_before(resort_1.name)
+    end
+
+  # User Story 18, Child Update From Childs Index Page (x1)
+    # As a visitor
+    # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+    # Next to every child, I see a link to edit that child's info
+    # When I click the link
+    # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
+    it 'links to the child edit form' do
+      region = Region.create!(
+        name: 'US - Rocky Mountain',
+        active: true,
+        rvp_operations: 'Fred "Shreddy" McGnar',
+        priority: 1)
+      resort = region.resorts.create!(
+        name: 'Crested Butte',
+        country: 'United States',
+        state_province: 'CO',
+        active: true,
+        director_operations: 'Molly Hauck',
+        ttm_revenue_usd: 170530257)
+
+      visit "/regions/#{region.id}/resorts"
+      # save_and_open_page
+      click_on 'Update Resort'
+
+      expect(current_path).to eq("/resorts/#{resort.id}/edit")
+    end
   end
 
   describe 'parent child creation' do
@@ -156,41 +218,6 @@ RSpec.describe "region's resorts index" do
       expect(page).to have_content(resort.director_operations)
       expect(page).to have_content(resort.ttm_revenue_usd)
     end
-  end
-
-# User Story 16, Sort Parent's Children in Alphabetical Order by name (x2)
-  # As a visitor
-  # When I visit the Parent's children Index Page
-  # Then I see a link to sort children in alphabetical order
-  # When I click on the link
-  # I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
-  it 'can sort associated resorts in alphabetical order' do
-    region = Region.create!(
-      name: 'US - Rocky Mountain',
-      active: true,
-      rvp_operations: 'Fred "Shreddy" McGnar',
-      priority: 1)
-    resort_1 = region.resorts.create!(
-      name: 'Crested Butte',
-      country: 'United States',
-      state_province: 'CO',
-      active: true,
-      director_operations: 'Molly Hauck',
-      ttm_revenue_usd: 170530257)
-    resort_2 = region.resorts.create!(
-      name: 'Breckenridge',
-      country: 'United States',
-      state_province: 'CO',
-      active: true,
-      director_operations: 'Doug Lowell',
-      ttm_revenue_usd: 227373675)
-
-    visit "/regions/#{region.id}/resorts"
-    # save_and_open_page
-    expect(resort_1.name).to appear_before(resort_2.name)
-
-    click_on 'Sort Alphabetically'
-    expect(resort_2.name).to appear_before(resort_1.name)
   end
 
 end

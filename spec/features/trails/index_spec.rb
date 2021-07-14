@@ -70,4 +70,19 @@ RSpec.describe 'Trails index' do
 
     expect(current_path).to eq("/trails/#{@trail_1.id}/edit")
   end
+
+# User Story 23, Child Delete From Childs Index Page (x1)
+  # As a visitor
+  # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+  # Next to every child, I see a link to delete that child
+  # When I click the link
+  # I should be taken to the `child_table_name` index page where I no longer see that child
+  it 'has a link that deletes an existing trail' do
+    visit '/trails'
+
+    click_on("Delete #{@trail_1.name}")
+
+    expect(current_path).to eq('/trails')
+    expect(page).to_not have_content(@trail_1.name)
+  end
 end

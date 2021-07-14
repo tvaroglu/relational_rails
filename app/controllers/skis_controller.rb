@@ -29,7 +29,8 @@ class SkisController < ApplicationController
   end
 
   def delete
-    binding.pry
+    Ski.find(ski_params[:id]).delete
+    redirect_to "/skis"
   end
   private
 

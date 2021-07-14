@@ -8,9 +8,8 @@ class SkiBrandSkisController < ApplicationController
     end
     if params[:sort] == 'alpha'
       @skis = @skis.order_alphabetically('name')
-
     elsif params[:turn_radius]
-      @skis = @skis.where('turn_radius > ?', ski_params[:turn_radius])
+      @skis = @skis.filter_by_turn_radius(ski_params[:turn_radius])
     end
   end
 

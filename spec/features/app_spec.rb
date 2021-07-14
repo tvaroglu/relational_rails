@@ -40,8 +40,13 @@ RSpec.describe 'application layout' do
       click_on "Resorts Index"
       expect(current_path).to eq("/resorts")
     end
-    xit 'links to skis index' do
-      # stuff
+    it 'links to skis index' do
+      visit "/parks"
+      click_on "Skis Index"
+      expect(current_path).to eq("/skis")
+      visit "/trails"
+      click_on "Skis Index"
+      expect(current_path).to eq("/skis")
     end
   end
 
@@ -95,8 +100,13 @@ RSpec.describe 'application layout' do
       click_on "Regions Index"
       expect(current_path).to eq("/regions")
     end
-    xit 'links to ski brands index' do
-      # stuff
+    it 'links to ski brands index' do
+      visit "/regions"
+      click_on "Ski Brands"
+      expect(current_path).to eq("/ski_brands")
+      visit "/parks"
+      click_on "Ski Brands"
+      expect(current_path).to eq("/ski_brands")
     end
   end
 

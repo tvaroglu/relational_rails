@@ -13,14 +13,14 @@ RSpec.describe 'ski brands Index' do
     visit '/ski_brands'
   end
 
-  it 'has all of the ski brands' do
+  it '1 - has all of the ski brands' do
     expect(page).to have_content(@atomic.name)
     expect(page).to have_content(@head.name)
     expect(page).to have_content(@armada.name)
     expect(page).to have_content(@line.name)
   end
 
-  it 'is sorted by most recently created' do
+  it '6 - is sorted by most recently created' do
     expect(@atomic.name).to appear_before(@head.name)
     expect(@head.name).to appear_before(@line.name)
     expect(@line.name).to appear_before(@armada.name)

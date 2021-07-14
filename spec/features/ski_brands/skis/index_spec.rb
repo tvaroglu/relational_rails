@@ -13,7 +13,7 @@ RSpec.describe 'Ski brands -Skis Index' do
     visit "/ski_brands/#{@atomic.id}/skis"
   end
 
-  it 'has all of the skis from the brand selected' do
+  it '5 - has all of the skis from the brand selected' do
 
     expect(page).to have_content(@bentChetler.name)
     expect(page).to have_content(@vantage.name)
@@ -32,7 +32,7 @@ RSpec.describe 'Ski brands -Skis Index' do
   end
 
   it '16 - has a link to sort skis alphabetically' do
-    click_on('Sort Alphabetically')
+    click_on 'Sort Alphabetically'
     expect('Bent Chetler 100').to appear_before('Vantage 90 Ti')
   end
 

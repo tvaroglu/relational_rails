@@ -13,7 +13,7 @@ RSpec.describe 'skis Show' do
     
     visit "/skis/#{@vantage.id}"
   end
-  it 'has only the ski with given id' do
+  it '4 - has only the ski with given id' do
 
     expect(page).to have_content(@vantage.name)
     expect(page).to_not have_content(@arv106.name)

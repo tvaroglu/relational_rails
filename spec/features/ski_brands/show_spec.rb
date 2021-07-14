@@ -13,18 +13,18 @@ RSpec.describe 'ski brands Show' do
     visit "/ski_brands/#{@atomic.id}"
   end
 
-  it 'has only the parent with given id' do
+  it '2 - has only the parent with given id' do
     expect(page).to have_content(@atomic.name)
     expect(page).to_not have_content(@head.name)
     expect(page).to_not have_content(@armada.name)
     expect(page).to_not have_content(@line.name)
   end
 
-  it 'has the number of skis manufactured by this brand' do
+  it '7 - has the number of skis manufactured by this brand' do
     expect(page).to have_content("Number of ski currently made: 2")
   end
 
-  it 'has a link to see the skis from this brand' do
+  it '10 - has a link to see the skis from this brand' do
     expect(page).to have_link("#{@atomic.name} Skis")
     click_on("#{@atomic.name} Skis")
     expect(current_path).to eq("/ski_brands/#{@atomic.id}/skis")

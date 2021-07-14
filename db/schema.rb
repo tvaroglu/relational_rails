@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_10_155953) do
+ActiveRecord::Schema.define(version: 2021_07_14_203210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2021_07_10_155953) do
     t.string "name"
     t.boolean "does_racing"
     t.integer "year_founded"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "skis", force: :cascade do |t|

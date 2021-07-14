@@ -1,7 +1,7 @@
 class SkisController < ApplicationController
 
   def index
-    @skis = Ski.where('for_jumps = true')
+    @skis = Ski.boolean_true
   end
 
   def show

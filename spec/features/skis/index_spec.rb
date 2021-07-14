@@ -12,7 +12,7 @@ RSpec.describe 'skis Index' do
     
     visit '/skis'
   end
-  it 'has all of the skis' do
+  it '3 - has all of the skis' do
 
     expect(page).to have_content(@bentChetler.name)
     expect(page).to have_content(@arv106.name)

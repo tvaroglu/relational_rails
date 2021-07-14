@@ -20,7 +20,7 @@ RSpec.describe 'skis Show' do
 
   end
 
-  it '14 - has a link to update each ski, updates and returns, showing change' do
+  it '14 - has a link to update ski, updates and returns, showing change' do
     click_on('Update')
     expect(current_path).to eq("/skis/#{@vantage.id}/edit")
     fill_in 'name', with: 'disadvantage'
@@ -28,5 +28,11 @@ RSpec.describe 'skis Show' do
     expect(current_path).to eq("/skis/#{@vantage.id}")
     expect(page).to_not have_content('Vantage')
     expect(page).to have_content('disadvantage')
+  end
+
+  it '20 - has a delete link, which deletes ski and returns to ski index' do
+    click_on('Delete')
+    expect(current_path).to eq("/skis")
+    expect(page).to_not have_content('Vantage')
   end
 end

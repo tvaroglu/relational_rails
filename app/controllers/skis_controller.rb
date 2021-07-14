@@ -25,7 +25,7 @@ class SkisController < ApplicationController
 
   def update
     Ski.find(ski_params[:id]).update(ski_params)
-    redirect_to "/skis"
+    redirect_to "/skis/#{ski_params[:id]}"
   end
 
   def delete

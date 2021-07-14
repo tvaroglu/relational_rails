@@ -19,4 +19,29 @@ RSpec.describe 'skis Index' do
     expect(page).to have_content(@arv106.name)
 
   end
+
+  it '15 - only shows skis that are for jumps' do
+    expect(page).to_not have_content('false')
+  end
+
+  it '18 - has an edit link for each ski' do
+    within(@bentChetler.name) do
+      click_on('edit')
+    end
+    expect(current_path).to eq("/skis/#{@bentChetler.id}/edit")
+    fill_in 'name', with: 'Unbent Chetler'
+    click_on('commit')
+    expect(current_path).to eq("/skis")
+    expect(page).to have_content('Unbent Chetler')
+    expect(page).to_not have_content('Bent Chetler 100')
+  end
+
+  it '23 - has a delete button for each ski' do 
+    expect(page).to have_content('Bent Chetler 100')
+    within(@bentChetler.name) do
+      click_on('delete')
+    end
+    expect(current_path).to eq("/skis")
+    expect(page).to_not have_content('Bent Chetler 100')
+  end
 end

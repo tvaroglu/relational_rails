@@ -1,6 +1,5 @@
 class SkiBrandSkisController < ApplicationController
   def index
-    binding.pry
     @skis = SkiBrand.find(ski_params[:ski_brand_id]).skis
     @brand_id = ski_params[:ski_brand_id]
     if @skis != []
@@ -8,7 +7,7 @@ class SkiBrandSkisController < ApplicationController
       @ski_max = SkiBrand.find(ski_params[:ski_brand_id]).skis.order('turn_radius desc').first.turn_radius
     end
     if params[:sort] == 'alpha'
-      @skis = @skis.skis.order_alphabetically('name')
+      @skis = @skis.order_alphabetically('name')
 
     elsif params[:turn_radius]
       @skis = @skis.where('turn_radius > ?', ski_params[:turn_radius])
@@ -16,6 +15,7 @@ class SkiBrandSkisController < ApplicationController
   end
 
   def new 
+    @brand_id = SkiBrand.find(ski_params[:ski_brand_id]).id
   end
 
   def create
@@ -27,7 +27,6 @@ class SkiBrandSkisController < ApplicationController
 
   def delete
     Ski.find(ski_params[:id]).delete
-    binding.pry
     redirect_to "/ski_brands/#{ski_params[:ski_brand_id]}/skis"
   end
   private

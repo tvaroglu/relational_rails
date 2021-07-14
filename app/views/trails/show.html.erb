@@ -6,4 +6,5 @@
 <p>Loop: <%= @trail.loop %></p>
 <br>
 
-<%= link_to 'Update Trail', "/trails/#{@trail.id}/edit" %>
+<%= link_to 'Update Trail', "/trails/#{@trail.id}/edit" %>&nbsp;
+<%= link_to 'Delete Park', "/trails/#{@trail.id}", method: :delete %>

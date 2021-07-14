@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/trails/:id', to: 'trails#show'
   get '/trails/:id/edit', to: 'trails#edit'
   patch '/trails/:id', to: 'trails#update'
+  delete '/trails/:id', to: 'trails#destroy'
 
   get '/regions', to: 'regions#index'
   get '/regions/new', to: 'regions#new'

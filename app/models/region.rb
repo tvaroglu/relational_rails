@@ -13,4 +13,8 @@ class Region < ApplicationRecord
     self.resorts.order(:name)
   end
 
+  def filter_resorts_by(x)
+    self.resorts.where("ttm_revenue_usd > ?", (x.to_i * 1000000))
+  end
+
 end

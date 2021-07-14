@@ -26,10 +26,19 @@ class RegionsController < ApplicationController
     redirect_to "/regions/#{region.id}"
   end
 
+  def destroy
+    region = Region.find(params[:id])
+    region.resorts.destroy_all
+    region.destroy
+    redirect_to '/regions'
+  end
+
   def resorts
     @region = Region.find(params[:id])
     if "#{params[:sorted]}" == 'true'
       @resorts = @region.sort_resorts_alphabetically
+    elsif params[:ttm_revenue_usd] != nil
+      @resorts = @region.filter_resorts_by(params[:ttm_revenue_usd])
     else
       @resorts = @region.resorts.all
     end

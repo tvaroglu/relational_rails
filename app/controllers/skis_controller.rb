@@ -1,6 +1,7 @@
 class SkisController < ApplicationController
 
   def index
+    @skis = Ski.all
   end
 
   def show
@@ -17,6 +18,19 @@ class SkisController < ApplicationController
     end
   end
 
+  def edit
+    @ski = Ski.find(ski_params[:id])
+    @ski_brands = SkiBrand.all
+  end
+
+  def update
+    Ski.find(ski_params[:id]).update(ski_params)
+    redirect_to "/skis/#{ski_params[:id]}"
+  end
+
+  def delete
+    binding.pry
+  end
   private
 
   def ski_params

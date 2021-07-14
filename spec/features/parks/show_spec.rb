@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'User Story 2 - Park Show' do
+RSpec.describe 'Park Show' do
   # As a visitor
   # When I visit '/parents/:id'
   # Then I see the parent with that id including the parent's attributes:
@@ -22,29 +22,28 @@ RSpec.describe 'User Story 2 - Park Show' do
   end
 
   # User Story 7
-  # As a visitor
-  # When I visit a parent's show page
-  # I see a count of the number of children associated with this parent
-  it 'shows the count of the number of trails associated with the specified park' do
-    park = Park.create!(name: "North Table Mountain",
-                        state: "CO",
-                        county: "Jefferson",
-                        parking_fee: 0,
-                        dogs_allowed: true)
-    trail_1 = park.trails.create!(name: "North Table Loop",
-                          length: 38016,
-                          elevation_gain: 1059,
-                          loop: true)
-    trail_2 = park.trails.create!(name: "Cottonwood Canyon Trail",
-                          length: 5280,
-                          elevation_gain: 320,
-                          loop: false)
+    # As a visitor
+    # When I visit a parent's show page
+    # I see a count of the number of children associated with this parent
+    it 'shows the count of the number of trails associated with the specified park' do
+      park = Park.create!(name: "North Table Mountain",
+                          state: "CO",
+                          county: "Jefferson",
+                          parking_fee: 0,
+                          dogs_allowed: true)
+      trail_1 = park.trails.create!(name: "North Table Loop",
+                            length: 38016,
+                            elevation_gain: 1059,
+                            loop: true)
+      trail_2 = park.trails.create!(name: "Cottonwood Canyon Trail",
+                            length: 5280,
+                            elevation_gain: 320,
+                            loop: false)
 
-    visit "/parks/#{park.id}"
+      visit "/parks/#{park.id}"
 
-    expect(page).to have_content("#{park.trails.length} Trails")
-  end
-
+      expect(page).to have_content("#{park.trails_count} Trails")
+    end
   # # User Story 8:
   # # As a visitor
   # # When I visit any page on the site

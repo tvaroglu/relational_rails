@@ -5,7 +5,7 @@
 <p>County: <%= @park.county %></p>
 <p>Parking Fee: $<%= @park.parking_fee %></p>
 <p>Dogs Allowed: <%= @park.dogs_allowed %></p>
-<p><%= @park.trails.length %> Trails</p>
+<p><%= @park.trails_count %> Trails</p>
 <br>
 
 <%= link_to 'Update Park', "/parks/#{@park.id}/edit" %>

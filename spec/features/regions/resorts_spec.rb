@@ -123,6 +123,7 @@ RSpec.describe "region's resorts index" do
       expect(resort_1.name).to appear_before(resort_2.name)
 
       click_on 'Sort Alphabetically'
+      expect(current_path).to eq("/regions/#{region.id}/resorts")
       expect(resort_2.name).to appear_before(resort_1.name)
     end
 
@@ -156,9 +157,9 @@ RSpec.describe "region's resorts index" do
       visit "/regions/#{region.id}/resorts"
       # save_and_open_page
 
-      # fill_in('Minimum Revenue Threshold ($MM):', with: 200)
       select(200, from: 'Minimum Revenue Threshold ($MM):')
       click_button 'Filter Resorts'
+      expect(current_path).to eq("/regions/#{region.id}/resorts")
 
       expect(page).to have_content(resort_2.name)
       expect(page).to_not have_content(resort_1.name)

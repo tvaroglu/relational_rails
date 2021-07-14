@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe 'application layout' do
+  describe 'welcome index' do
+    it 'displays the correct welcome page content' do
+      visit '/'
+      #save_and_open_page
+
+      expect(page).to have_content('Relational Rails Index')
+      expect(page).to have_content('Group Member Names')
+      expect(page).to have_content('Antonio King (Parks & Trails)')
+      expect(page).to have_content('Alex Klick (Ski Brands & Skis)')
+      expect(page).to have_content('Taylor Varoglu (Regions & Ski Resorts)')
+    end
+  end
+
   describe 'links to all child indexes' do
     # User Story 8, Child Index Link
       # As a visitor
@@ -13,15 +26,15 @@ RSpec.describe 'application layout' do
                           parking_fee: 0,
                           dogs_allowed: true)
 
-      visit "/parks"
+      visit '/parks'
       # save_and_open_page
 
-      click_on "Trails Index"
-      expect(current_path).to eq("/trails")
+      click_on 'Trails Index'
+      expect(current_path).to eq('/trails')
 
-      visit "/regions"
-      click_on "Trails Index"
-      expect(current_path).to eq("/trails")
+      visit '/regions'
+      click_on 'Trails Index'
+      expect(current_path).to eq('/trails')
     end
     it 'links to resorts index' do
       region = Region.create!(
@@ -30,28 +43,31 @@ RSpec.describe 'application layout' do
         rvp_operations: 'Fred "Shreddy" McGnar',
         priority: 1)
 
-      visit "/regions"
+      visit '/regions'
       # save_and_open_page
 
-      click_on "Resorts Index"
-      expect(current_path).to eq("/resorts")
+      click_on 'Resorts Index'
+      expect(current_path).to eq('/resorts')
 
-      visit "/parks"
-      click_on "Resorts Index"
-      expect(current_path).to eq("/resorts")
+      visit '/parks'
+      click_on 'Resorts Index'
+      expect(current_path).to eq('/resorts')
     end
     it 'links to skis index' do
-      atomic = SkiBrand.create!(name:'Atomic', does_racing:'true', year_founded:1955)
+      atomic = SkiBrand.create!(
+        name: 'Atomic',
+        does_racing: 'true',
+        year_founded: 1955)
 
-      visit "/ski_brands"
+      visit '/ski_brands'
       # save_and_open_page
 
-      click_on "Skis Index"
-      expect(current_path).to eq("/skis")
+      click_on 'Skis Index'
+      expect(current_path).to eq('/skis')
 
-      visit "/regions"
-      click_on "Skis Index"
-      expect(current_path).to eq("/skis")
+      visit '/regions'
+      click_on 'Skis Index'
+      expect(current_path).to eq('/skis')
     end
   end
 
@@ -71,15 +87,15 @@ RSpec.describe 'application layout' do
                             elevation_gain: 1059,
                             loop: true)
 
-      visit "/trails"
+      visit '/trails'
       # save_and_open_page
 
-      click_on "Parks Index"
-      expect(current_path).to eq("/parks")
+      click_on 'Parks Index'
+      expect(current_path).to eq('/parks')
 
-      visit "/resorts"
-      click_on "Parks Index"
-      expect(current_path).to eq("/parks")
+      visit '/resorts'
+      click_on 'Parks Index'
+      expect(current_path).to eq('/parks')
     end
     it 'links to regions index' do
       region = Region.create!(
@@ -95,29 +111,36 @@ RSpec.describe 'application layout' do
         director_operations: 'Molly Hauck',
         ttm_revenue_usd: 170530257)
 
-      visit "/resorts"
+      visit '/resorts'
       # save_and_open_page
 
-      click_on "Regions Index"
-      expect(current_path).to eq("/regions")
+      click_on 'Regions Index'
+      expect(current_path).to eq('/regions')
 
-      visit "/parks"
-      click_on "Regions Index"
-      expect(current_path).to eq("/regions")
+      visit '/parks'
+      click_on 'Regions Index'
+      expect(current_path).to eq('/regions')
     end
     it 'links to ski brands index' do
-      atomic = SkiBrand.create!(name:'Atomic', does_racing:'true', year_founded:1955)
-      bent_chetler = Ski.create!(name:'Bent Chetler 100', for_jumps:'true', turn_radius:19.5, ski_brand_id: atomic.id)
+      atomic = SkiBrand.create!(
+        name: 'Atomic',
+        does_racing: 'true',
+        year_founded: 1955)
+      bent_chetler = Ski.create!(
+        name: 'Bent Chetler 100',
+        for_jumps: 'true',
+        turn_radius: 19.5,
+        ski_brand_id: atomic.id)
 
-      visit "/skis"
+      visit '/skis'
       # save_and_open_page
 
-      click_on "Ski Brands Index"
-      expect(current_path).to eq("/ski_brands")
+      click_on 'Ski Brands Index'
+      expect(current_path).to eq('/ski_brands')
 
-      visit "/parks"
-      click_on "Ski Brands Index"
-      expect(current_path).to eq("/ski_brands")
+      visit '/parks'
+      click_on 'Ski Brands Index'
+      expect(current_path).to eq('/ski_brands')
     end
   end
 

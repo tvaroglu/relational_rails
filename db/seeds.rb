@@ -29,17 +29,73 @@ chatauqua = Park.create!(
   county: "Boulder",
   parking_fee: 5,
   dogs_allowed: true)
+hall_ranch = Park.create!(
+  name: "Hall Ranch Open Space",
+  state: "CO",
+  county: "Boulder",
+  parking_fee: 0,
+  dogs_allowed: false)
 
 # Trails
-nt_loop = north_table.trails.create!(
+north_table.trails.create!(
   name: "North Table Loop",
   length: 38016,
   elevation_gain: 1059,
   loop: true)
-cottonwood = north_table.trails.create!(
+north_table.trails.create!(
   name: "Cottonwood Canyon Trail",
   length: 5280,
   elevation_gain: 320,
+  loop: false)
+north_table.trails.create!(
+  name: "Tilting Mesa Trail",
+  length: 5000,
+  elevation_gain: 40,
+  loop: false)
+north_table.trails.create!(
+  name: "Mesa Top Trail",
+  length: 10560,
+  elevation_gain: 560,
+  loop: false)
+north_table.trails.create!(
+  name: "Rim Rock Trail",
+  length: 10000,
+  elevation_gain: 110,
+  loop: true)
+north_table.trails.create!(
+  name: "Golden Cliffs Trail",
+  length: 6280,
+  elevation_gain: 160,
+  loop: true)
+chatauqua.trails.create!(
+  name: "Royal Arch",
+  length: 15750,
+  elevation_gain: 1394,
+  loop: false)
+chatauqua.trails.create!(
+  name: "Chatauqua Trail",
+  length: 6000,
+  elevation_gain: 419,
+  loop: false)
+chatauqua.trails.create!(
+  name: "First and Second Flatirons Loop",
+  length: 11000,
+  elevation_gain: 1427,
+  loop: true)
+hall_ranch.trails.create!(
+  name: "Button Rock Dam via Sleepy Lion Trail",
+  length: 27200,
+  elevation_gain: 856,
+  loop: true)
+hall_ranch.trails.create!(
+  name: "Picture Rock Trail",
+  length: 50000,
+  elevation_gain: 984,
+  loop: false)
+hall_ranch.trails.create!(
+  name: "Antelope Trail",
+  length: 10000,
+  elevation_gain: 449,
   loop: false)
 
 

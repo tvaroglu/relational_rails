@@ -35,7 +35,6 @@ class RegionsController < ApplicationController
 
   def resorts
     @region = Region.find(params[:id])
-    # require "pry"; binding.pry
     if "#{params[:sorted]}" == 'true'
       @resorts = @region.sort_resorts_alphabetically
     elsif params[:ttm_revenue_usd] != nil

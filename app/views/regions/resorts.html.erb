@@ -18,8 +18,8 @@
       <%= form.submit 'Filter Resorts' %>
     <% end %>
   </div>
-  <br><br><br>
-  <br><br><br>
+  <br><br>
+  <br><br>
 
   <% @resorts.each do |resort| %>
     <h5 style="float:left;"><%= link_to resort.name, "/resorts/#{resort.id}" %></h5>

@@ -3,7 +3,8 @@
 <br>
 <h2>Trails Index</h2>
 
-<%= link_to 'Create Trail', "/parks/#{@park.id}/trails/new" %>
+<%= link_to 'Create Trail', "/parks/#{@park.id}/trails/new" %>&nbsp;
+<%= link_to 'Sort Alphabetically', "/parks/#{@park.id}/trails?sorted=true" %>
 <br><br>
 
 <% @trails.each do |trail| %>
@@ -11,5 +12,6 @@
   <p>Length: <%= trail.length %></p>
   <p>Elevation Gain: <%= trail.elevation_gain %></p>
   <p>Loop: <%= trail.loop %></p>
-  <br>
+  <%= link_to "Edit #{trail.name}", "/trails/#{trail.id}/edit" %>
+  <br><br>
 <% end %>

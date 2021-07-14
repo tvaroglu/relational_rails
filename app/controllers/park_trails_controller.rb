@@ -1,7 +1,11 @@
 class ParkTrailsController < ApplicationController
   def index
     @park = Park.find(params[:id])
-    @trails = @park.trails
+    if "#{params[:sorted]}" == 'true'
+      @trails = @park.sort_trails_alphabetically
+    else
+      @trails = @park.trails
+    end
   end
 
   def new

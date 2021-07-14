@@ -1,6 +1,6 @@
 class TrailsController < ApplicationController
   def index
-    @trails = Trail.all
+    @trails = Trail.loop_trails
   end
 
   def show
@@ -15,6 +15,12 @@ class TrailsController < ApplicationController
     @trail = Trail.find(params[:id])
     @trail.update(trail_params)
     redirect_to "/trails/#{@trail.id}"
+  end
+
+  def destroy
+    trail = Trail.find(params[:id])
+    trail.destroy
+    redirect_to '/trails'
   end
 
   private

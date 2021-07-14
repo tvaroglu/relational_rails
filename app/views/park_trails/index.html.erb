@@ -11,5 +11,6 @@
   <p>Length: <%= trail.length %></p>
   <p>Elevation Gain: <%= trail.elevation_gain %></p>
   <p>Loop: <%= trail.loop %></p>
-  <br>
+  <%= link_to "Edit #{trail.name}", "/trails/#{trail.id}/edit" %>
+  <br><br>
 <% end %>

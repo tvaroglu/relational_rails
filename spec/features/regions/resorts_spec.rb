@@ -281,7 +281,8 @@ RSpec.describe "region's resorts index" do
     visit "/regions/#{region.id}/resorts"
     # save_and_open_page
 
-    fill_in('Minimum Revenue Threshold ($MM):', with: 2)
+    # fill_in('Minimum Revenue Threshold ($MM):', with: 200)
+    select(200, from: 'Minimum Revenue Threshold ($MM):')
     click_button 'Filter Resorts'
 
     expect(page).to have_content(resort_2.name)

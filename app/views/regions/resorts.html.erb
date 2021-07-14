@@ -8,6 +8,17 @@
 
   <h3 style="float:left; padding-right:10px;"><em>All Resorts:</em></h3>
   <h4 style="float:left; padding-top:3px;"><%= link_to "Sort Alphabetically", "/regions/#{@region.id}/resorts?sorted=true" %></h4>
+  <br><br>
+
+  <div style="float:left;">
+    <%= form_with url: "/regions/#{@region.id}/resorts?ttm_revenue_usd=#{params[:ttm_revenue_usd]}", method: :get, local: true do |form| %>
+      <%= form.label :ttm_revenue_usd, 'Minimum Revenue Threshold ($MM):' %>
+      <%= form.select :ttm_revenue_usd, (0..1000).step(100).to_a, selected: 0 %>
+      <br>
+      <%= form.submit 'Filter Resorts' %>
+    <% end %>
+  </div>
+  <br><br><br>
   <br><br><br>
 
   <% @resorts.each do |resort| %>

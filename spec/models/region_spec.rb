@@ -55,6 +55,33 @@ RSpec.describe Region do
       expect(expected.first).to eq(resort_2)
       expect(expected.last).to eq(resort_1)
     end
+
+    it 'can filter resorts by minimum revenue threshold' do
+      region = Region.create!(
+        name: 'US - Rocky Mountain',
+        active: true,
+        rvp_operations: 'Fred "Shreddy" McGnar',
+        priority: 1)
+      resort_1 = region.resorts.create!(
+        name: 'Crested Butte',
+        country: 'United States',
+        state_province: 'CO',
+        active: true,
+        director_operations: 'Molly Hauck',
+        ttm_revenue_usd: 170530257)
+      resort_2 = region.resorts.create!(
+        name: 'Breckenridge',
+        country: 'United States',
+        state_province: 'CO',
+        active: true,
+        director_operations: 'Doug Lowell',
+        ttm_revenue_usd: 227373675)
+
+      expected = region.filter_resorts_by(200)
+
+      expect(expected.length).to eq(1)
+      expect(expected.first).to eq(resort_2)
+    end
   end
 
   describe 'class methods' do

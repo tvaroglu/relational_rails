@@ -13,4 +13,8 @@ class Region < ApplicationRecord
     self.resorts.order(:name)
   end
 
+  def filter_resorts_by(x)
+    Resort.where("ttm_revenue_usd > #{x.to_i * 1000000} AND region_id = #{self.id}")
+  end
+
 end

@@ -27,6 +27,34 @@ RSpec.describe Region do
 
       expect(region.resort_count).to eq(2)
     end
+
+    it 'can sort children via #sort_resorts_alphabetically' do
+      region = Region.create!(
+        name: 'US - Rocky Mountain',
+        active: true,
+        rvp_operations: 'Fred "Shreddy" McGnar',
+        priority: 1)
+      resort_1 = region.resorts.create!(
+        name: 'Crested Butte',
+        country: 'United States',
+        state_province: 'CO',
+        active: true,
+        director_operations: 'Molly Hauck',
+        ttm_revenue_usd: 170530257)
+      resort_2 = region.resorts.create!(
+        name: 'Breckenridge',
+        country: 'United States',
+        state_province: 'CO',
+        active: true,
+        director_operations: 'Doug Lowell',
+        ttm_revenue_usd: 227373675)
+
+      expected = region.sort_resorts_alphabetically
+
+      expect(expected.length).to eq(2)
+      expect(expected.first).to eq(resort_2)
+      expect(expected.last).to eq(resort_1)
+    end
   end
 
   describe 'class methods' do

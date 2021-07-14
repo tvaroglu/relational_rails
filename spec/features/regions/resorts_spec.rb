@@ -158,4 +158,39 @@ RSpec.describe "region's resorts index" do
     end
   end
 
+# User Story 16, Sort Parent's Children in Alphabetical Order by name (x2)
+  # As a visitor
+  # When I visit the Parent's children Index Page
+  # Then I see a link to sort children in alphabetical order
+  # When I click on the link
+  # I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
+  it 'can sort associated resorts in alphabetical order' do
+    region = Region.create!(
+      name: 'US - Rocky Mountain',
+      active: true,
+      rvp_operations: 'Fred "Shreddy" McGnar',
+      priority: 1)
+    resort_1 = region.resorts.create!(
+      name: 'Crested Butte',
+      country: 'United States',
+      state_province: 'CO',
+      active: true,
+      director_operations: 'Molly Hauck',
+      ttm_revenue_usd: 170530257)
+    resort_2 = region.resorts.create!(
+      name: 'Breckenridge',
+      country: 'United States',
+      state_province: 'CO',
+      active: true,
+      director_operations: 'Doug Lowell',
+      ttm_revenue_usd: 227373675)
+
+    visit "/regions/#{region.id}/resorts"
+    # save_and_open_page
+    expect(resort_1.name).to appear_before(resort_2.name)
+
+    click_on 'Sort Alphabetically'
+    expect(resort_2.name).to appear_before(resort_1.name)
+  end
+
 end

@@ -6,8 +6,9 @@
   </form>
   <br><br><br>
 
-  <h3><em>All Resorts:</em></h3>
-  <br>
+  <h3 style="float:left; padding-right:10px;"><em>All Resorts:</em></h3>
+  <h4 style="float:left; padding-top:3px;"><%= link_to "Sort Alphabetically", "/regions/#{@region.id}/resorts?sorted=true" %></h4>
+  <br><br><br>
 
   <% @resorts.each do |resort| %>
     <h5><%= link_to resort.name, "/resorts/#{resort.id}" %></h5>

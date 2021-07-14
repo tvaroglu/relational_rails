@@ -28,7 +28,11 @@ class RegionsController < ApplicationController
 
   def resorts
     @region = Region.find(params[:id])
-    @resorts = @region.resorts
+    if "#{params[:sorted]}" == 'true'
+      @resorts = @region.sort_resorts_alphabetically
+    else
+      @resorts = @region.resorts.all
+    end
   end
 
   def new_resort

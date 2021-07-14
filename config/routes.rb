@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/regions/:id/edit', to: 'regions#edit'
   post '/regions', to: 'regions#create'
   patch '/regions/:id/edit', to: 'regions#update'
+  delete '/regions/:id', to: 'regions#destroy'
 
   get '/regions/:id/resorts', to: 'regions#resorts'
   get '/regions/:id/resorts/new', to: 'regions#new_resort'
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
   get '/resorts/:id', to: 'resorts#show'
   get '/resorts/:id/edit', to: 'resorts#edit'
   patch '/resorts/:id/edit', to: 'resorts#update'
+  delete '/resorts/:id', to: 'resorts#destroy'
 
   get '/ski_brands', to: 'ski_brands#index'
   get 'ski_brands/new', to: 'ski_brands#new'

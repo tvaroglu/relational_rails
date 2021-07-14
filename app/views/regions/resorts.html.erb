@@ -11,10 +11,7 @@
   <br><br><br>
 
   <% @resorts.each do |resort| %>
-    <h5 style="float:left; padding-top:4px; padding-right:10px;"><%= link_to resort.name, "/resorts/#{resort.id}" %></h5>
-    <form style="float:left; padding-top:2px;" action= <%= "/resorts/#{resort.id}/edit" %>>
-      <input type="submit" value="Update Resort"/>
-    </form>
+    <h5 style="float:left;"><%= link_to resort.name, "/resorts/#{resort.id}" %></h5>
     <br><br>
     <p>State/Province: <%= resort.state_province %></p>
     <p>Country: <%= resort.country %></p>
@@ -23,6 +20,10 @@
     <p>Last 12 Months Total Revenue ($MM): <%= (resort.ttm_revenue_usd.to_i / 1000000.to_f).round(1) %></p>
     <p>Created At: <%= resort.created_at %></p>
     <p>Last Updated At: <%= resort.updated_at %></p>
-    <br>
+    <form style="float:left; padding-right:5px;" action= <%= "/resorts/#{resort.id}/edit" %>>
+      <input type="submit" value="Update Resort"/>
+    </form>
+    <%= button_to 'Delete Resort', "/resorts/#{resort.id}", method: :delete %>
+    <br><br>
   <% end %>
 </div>

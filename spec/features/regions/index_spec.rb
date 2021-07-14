@@ -68,4 +68,35 @@ RSpec.describe 'regions index page' do
     expect(current_path).to eq("/regions/#{region.id}/edit")
   end
 
+  # User Story 22, Parent Delete From Parent Index Page (x1)
+    # As a visitor
+    # When I visit the parent index page
+    # Next to every parent, I see a link to delete that parent
+    # When I click the link
+    # I am returned to the Parent Index Page where I no longer see that parent
+  it 'can delete the resort' do
+    region = Region.create!(
+      name: 'US - Rocky Mountain',
+      active: true,
+      rvp_operations: 'Fred "Shreddy" McGnar',
+      priority: 1)
+    resort = region.resorts.create!(
+      name: 'Crested Butte',
+      country: 'United States',
+      state_province: 'CO',
+      active: true,
+      director_operations: 'Molly Hauck',
+      ttm_revenue_usd: 170530257)
+
+    visit '/regions'
+    # save_and_open_page
+
+    click_on 'Delete Region'
+    expect(current_path).to eq('/regions')
+
+    visit '/regions'
+    # save_and_open_page
+    expect(page).to_not have_content(resort.name)
+  end
+
 end

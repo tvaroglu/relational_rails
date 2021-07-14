@@ -47,7 +47,7 @@ RSpec.describe 'Trails index' do
   # As a visitor
   # When I visit the child index
   # Then I only see records where the boolean column is `true`
-  xit 'returns all trails that are a loop' do
+  it 'returns all trails that are a loop' do
     visit '/trails'
 
     expect(page).to have_content(@trail_1.name)
@@ -69,11 +69,5 @@ RSpec.describe 'Trails index' do
     click_on("Edit #{@trail_1.name}")
 
     expect(current_path).to eq("/trails/#{@trail_1.id}/edit")
-
-    visit '/trails'
-
-    click_on("Edit #{@trail_2.name}")
-
-    expect(current_path).to eq("/trails/#{@trail_2.id}/edit")
   end
 end

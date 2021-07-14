@@ -1,13 +1,19 @@
-<div style="padding-left:5px;">
+<div style="padding-left:20px;">
   <h1>Regions Index</h1>
 
   <form style="float:left;" action="/regions/new">
     <input type="submit" value="New Region"/>
   </form>
-  <br><br><br>
+  <br><br>
+  <br><br>
 
   <% @regions.each do |region| %>
-    <h3><%= link_to region.name, "/regions/#{region.id}" %></h3>
+    <h3 style="float:left; padding-right:10px;"><%= link_to region.name, "/regions/#{region.id}" %></h3>
+    <form style="float:left; padding-top:2px;" action= <%= "/regions/#{region.id}/edit" %>>
+      <input type="submit" value="Update Region"/>
+    </form>
+    <br><br>
     <p>Created At: <%=region.created_at %></p>
+    <br>
   <% end %>
 </div>

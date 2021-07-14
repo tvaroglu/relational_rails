@@ -1,14 +1,14 @@
-<div style="padding-left:5px;">
+<div style="padding-left:20px;">
   <h1><%= "REGION:  #{@region.name}" %></h1>
   <form style="float:left;" action= <%= "/regions/#{@region.id}/edit" %>>
     <input type="submit" value="Update Region"/>
   </form>
-  <br><br>
+  <br><br><br>
 
-  <% if @region.resorts.length == 1 %>
-    <strong><%= link_to "View All (#{@region.resorts.length}) Resort", "/regions/#{@region.id}/resorts" %></strong>
+  <% if @region.resort_count == 1 %>
+    <strong><%= link_to "View All (#{@region.resort_count}) Resort", "/regions/#{@region.id}/resorts" %></strong>
   <% else %>
-    <strong><%= link_to "View All (#{@region.resorts.length}) Resorts", "/regions/#{@region.id}/resorts" %></strong>
+    <strong><%= link_to "View All (#{@region.resort_count}) Resorts", "/regions/#{@region.id}/resorts" %></strong>
   <% end %>
   <br><br>
 

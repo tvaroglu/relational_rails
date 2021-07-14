@@ -1,7 +1,7 @@
 class ResortsController < ApplicationController
 
   def index
-    @resorts = Resort.all
+    @resorts = Resort.only_true
   end
 
   def show

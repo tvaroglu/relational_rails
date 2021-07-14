@@ -1,7 +1,7 @@
 class SkisController < ApplicationController
 
   def index
-    @skis = Ski.all
+    @skis = Ski.where('for_jumps = true')
   end
 
   def show
@@ -25,7 +25,7 @@ class SkisController < ApplicationController
 
   def update
     Ski.find(ski_params[:id]).update(ski_params)
-    redirect_to "/skis/#{ski_params[:id]}"
+    redirect_to "/skis"
   end
 
   def delete

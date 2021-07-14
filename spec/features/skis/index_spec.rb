@@ -6,9 +6,9 @@ RSpec.describe 'skis Index' do
     @head = SkiBrand.create!(name:'Head', does_racing:'true', year_founded:1950)
     @line = SkiBrand.create!(name:'Line', does_racing:'false', year_founded:1995)
     @armada = SkiBrand.create!(name:'Armada', does_racing:'false', year_founded:2002)
-    @bentChetler = Ski.create!(name:'Bent Chetler 100', for_jumps:'true', turn_radius:19.5, ski_brand_id: @atomic.id)
-    @vantage = Ski.create!(name:'Vantage 90 Ti', for_jumps:'false', turn_radius:18.4, ski_brand_id: @atomic.id)
-    @arv106 = Ski.create!(name:'ARV 106', for_jumps:'true', turn_radius:20.5, ski_brand_id: @armada.id)
+    @bentChetler = Ski.create!(name:'Bent Chetler100', for_jumps:'true', turn_radius:19.5, ski_brand_id: @atomic.id)
+    @vantage = Ski.create!(name:'Vantage90 Ti', for_jumps:'false', turn_radius:18.4, ski_brand_id: @atomic.id)
+    @arv106 = Ski.create!(name:'ARV106', for_jumps:'true', turn_radius:20.5, ski_brand_id: @armada.id)
     
     visit '/skis'
   end
@@ -25,15 +25,17 @@ RSpec.describe 'skis Index' do
   end
 
   it '18 - has an edit link for each ski' do
-    within(@bentChetler.name) do
+    within("##{@arv106.name}") do
       click_on('edit')
     end
-    expect(current_path).to eq("/skis/#{@bentChetler.id}/edit")
+    expect(current_path).to eq("/skis/#{@arv106.id}/edit")
     fill_in 'name', with: 'Unbent Chetler'
+    page.check('for_jumps')
     click_on('commit')
     expect(current_path).to eq("/skis")
+    #binding.pry
     expect(page).to have_content('Unbent Chetler')
-    expect(page).to_not have_content('Bent Chetler 100')
+    expect(page).to_not have_content('ARV 106')
   end
 
   it '23 - has a delete button for each ski' do 

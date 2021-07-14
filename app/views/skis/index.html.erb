@@ -19,13 +19,15 @@
           <th>Name</th>
           <th>For Jumps?</th>
           <th>Turn Radius</th>
+          <th>Edit</th>
         </tr>
       </thead>
       <% @skis.each do |ski| %>
-      <tr id="<%= ski.name %>">
+      <tr id="<%=ski.name%>">
         <td><%= ski.name %></td>
         <td><%= ski.for_jumps %></td>
         <td><%= ski.turn_radius %></td>
+        <td><%= link_to "edit", "/skis/#{ski.id}/edit" %></td>
       </tr>
       <% end %>
     </table>

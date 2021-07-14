@@ -8,4 +8,5 @@
 <p><%= @park.trails_count %> Trails</p>
 <br>
 
-<%= link_to 'Update Park', "/parks/#{@park.id}/edit" %>
+<%= link_to 'Update Park', "/parks/#{@park.id}/edit" %>&nbsp;
+<%= link_to 'Delete Park', "/parks/#{@park.id}", method: :delete %>

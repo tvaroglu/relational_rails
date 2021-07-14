@@ -250,4 +250,41 @@ RSpec.describe "region's resorts index" do
     # save_and_open_page
     expect(page).to_not have_content(resort.name)
   end
+
+  # User Story 21, Display Records Over a Given Threshold (x3)
+    # As a visitor
+    # When I visit the Parent's children Index Page
+    # I see a form that allows me to input a number value
+    # When I input a number value and click the submit button that reads 'Only return records with more than `number` of `column_name`'
+    # Then I am brought back to the current index page with only the records that meet that threshold shown.
+  it 'can display resorts over a given query threshold' do
+    region = Region.create!(
+      name: 'US - Rocky Mountain',
+      active: true,
+      rvp_operations: 'Fred "Shreddy" McGnar',
+      priority: 1)
+    resort_1 = region.resorts.create!(
+      name: 'Crested Butte',
+      country: 'United States',
+      state_province: 'CO',
+      active: true,
+      director_operations: 'Molly Hauck',
+      ttm_revenue_usd: 170530257)
+    resort_2 = region.resorts.create!(
+      name: 'Breckenridge',
+      country: 'United States',
+      state_province: 'CO',
+      active: true,
+      director_operations: 'Doug Lowell',
+      ttm_revenue_usd: 227373675)
+
+    visit "/regions/#{region.id}/resorts"
+    # save_and_open_page
+
+    fill_in('Minimum Revenue Threshold ($MM):', with: 2)
+    click_button 'Filter Resorts'
+
+    expect(page).to have_content(resort_2.name)
+    expect(page).to_not have_content(resort_1.name)
+  end
 end

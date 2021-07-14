@@ -1,13 +1,23 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/', to: 'welcome#index'
+
   get '/parks', to: 'parks#index'
   get '/parks/new', to: 'parks#new'
   get '/parks/:id', to: 'parks#show'
-  get '/parks/:park_id/trails', to: 'park_trails#index'
+  get '/parks/:id/edit', to: 'parks#edit'
   post '/parks', to: 'parks#create'
+  patch '/parks/:id', to: 'parks#update'
+  delete '/parks/:id', to: 'parks#destroy'
 
+  get '/parks/:id/trails', to: 'park_trails#index'
+  get '/parks/:id/trails/new', to: 'park_trails#new'
+  post '/parks/:id/trails', to: 'park_trails#create'
   get '/trails', to: 'trails#index'
   get '/trails/:id', to: 'trails#show'
+  get '/trails/:id/edit', to: 'trails#edit'
+  patch '/trails/:id', to: 'trails#update'
+  delete '/trails/:id', to: 'trails#destroy'
 
   get '/regions', to: 'regions#index'
   get '/regions/new', to: 'regions#new'
@@ -15,10 +25,17 @@ Rails.application.routes.draw do
   get '/regions/:id/edit', to: 'regions#edit'
   post '/regions', to: 'regions#create'
   patch '/regions/:id/edit', to: 'regions#update'
+  delete '/regions/:id', to: 'regions#destroy'
+
   get '/regions/:id/resorts', to: 'regions#resorts'
+  get '/regions/:id/resorts/new', to: 'regions#new_resort'
+  post '/regions/:id/resorts', to: 'regions#create_new_resort'
 
   get '/resorts', to: 'resorts#index'
   get '/resorts/:id', to: 'resorts#show'
+  get '/resorts/:id/edit', to: 'resorts#edit'
+  patch '/resorts/:id/edit', to: 'resorts#update'
+  delete '/resorts/:id', to: 'resorts#destroy'
 
   get '/ski_brands', to: 'ski_brands#index'
   get 'ski_brands/new', to: 'ski_brands#new'

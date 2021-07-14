@@ -1,6 +1,9 @@
-<br><h1>New Park</h1>
+<h1><%= @park.name %></h1>
 
-<%= form_with url: '/parks', method: :post, local: true do |form| %>
+<br>
+<h2>Edit Park:</h2>
+
+<%= form_with url: "/parks/#{@park.id}", method: :patch, local: true do |form| %>
   <br>
   <%= form.label :name, 'Name:' %>
   <%= form.text_field :name %>
@@ -17,6 +20,6 @@
   <%= form.label :dogs_allowed, 'Dogs Allowed?' %>
   <%= form.select :dogs_allowed, ['Yes', 'No'] %>
   <br><br>
-  
-  <%= form.submit 'Create Park' %>
+
+  <%= form.submit 'Update Park' %>
 <% end %>

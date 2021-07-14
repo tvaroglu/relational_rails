@@ -1,0 +1,22 @@
+<h1><%= @park.name %></h1>
+
+<br>
+<h2>New Trail:</h2>
+<br>
+
+<%= form_with url: "/parks/#{@park.id}/trails", method: :post, local: true do |form| %>
+  <%= form.label :name, 'Name:' %>
+  <%= form.text_field :name %>
+  <br><br>
+  <%= form.label :length, 'Length:' %>
+  <%= form.number_field :length %>
+  <br><br>
+  <%= form.label :elevation_gain, 'Elevation Gain:' %>
+  <%= form.number_field :elevation_gain %>
+  <br><br>
+  <%= form.label :loop, 'Loop?' %>
+  <%= form.select :loop, ['Yes', 'No'] %>
+  <br><br>
+
+  <%= form.submit 'Create Trail' %>
+<% end %>

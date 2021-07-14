@@ -35,7 +35,7 @@ RSpec.describe 'region show page' do
     visit "/regions/#{region.id}"
     # save_and_open_page
 
-    expect(page).to have_content(region.name)
+    expect(page).to have_content("REGION: #{region.name}")
     expect(page).to have_content("Priority: #{region.priority}")
     expect(page).to have_content("Currently Active: #{region.active}")
     expect(page).to have_content("RVP of Operations: #{region.rvp_operations}")
@@ -98,10 +98,10 @@ RSpec.describe 'region show page' do
     end
   end
 
-# User Story 10, Parent Child Index Link
-  # As a visitor
-  # When I visit a parent show page ('/parents/:id')
-  # Then I see a link to take me to that parent's `child_table_name` page ('/parents/:id/child_table_name')
+  # User Story 10, Parent Child Index Link
+    # As a visitor
+    # When I visit a parent show page ('/parents/:id')
+    # Then I see a link to take me to that parent's `child_table_name` page ('/parents/:id/child_table_name')
   it 'shows link to the regions index' do
     region = Region.create!(
       name: 'US - Rocky Mountain',
@@ -116,4 +116,40 @@ RSpec.describe 'region show page' do
     expect(current_path).to eq("/regions/#{region.id}/resorts")
   end
 
+  # User Story 19, Parent Delete (x3)
+    # As a visitor
+    # When I visit a parent show page
+    # Then I see a link to delete the parent
+    # When I click the link "Delete Parent"
+    # Then a 'DELETE' request is sent to '/parents/:id',
+    # the parent is deleted, and all child records are deleted
+    # and I am redirected to the parent index page where I no longer see this parent
+  it 'can delete the parent region and associated child resorts' do
+    region = Region.create!(
+      name: 'US - Rocky Mountain',
+      active: true,
+      rvp_operations: 'Fred "Shreddy" McGnar',
+      priority: 1)
+    resort = region.resorts.create!(
+      name: 'Crested Butte',
+      country: 'United States',
+      state_province: 'CO',
+      active: true,
+      director_operations: 'Molly Hauck',
+      ttm_revenue_usd: 170530257)
+
+    visit "/regions/#{region.id}"
+    # save_and_open_page
+
+    click_on 'Delete Region'
+    expect(current_path).to eq('/regions')
+
+    visit '/regions'
+    # save_and_open_page
+    expect(page).to_not have_content(region.name)
+
+    visit '/resorts'
+    # save_and_open_page
+    expect(page).to_not have_content(resort.name)
+  end
 end

@@ -1,7 +1,7 @@
 class RegionsController < ApplicationController
 
   def index
-    @regions = Region.all.order(created_at: :desc)
+    @regions = Region.ordered_by_created_date
   end
 
   def show
@@ -12,8 +12,8 @@ class RegionsController < ApplicationController
   end
 
   def create
-    region = Region.create(region_params)
-    redirect_to "/regions"
+    Region.create(region_params)
+    redirect_to '/regions'
   end
 
   def edit
@@ -26,14 +26,42 @@ class RegionsController < ApplicationController
     redirect_to "/regions/#{region.id}"
   end
 
-  def resorts
-    @region = Region.find(params[:id])
-    @resorts = @region.resorts
+  def destroy
+    region = Region.find(params[:id])
+    region.resorts.destroy_all
+    region.destroy
+    redirect_to '/regions'
   end
 
-private
+  def resorts
+    @region = Region.find(params[:id])
+    if "#{params[:sorted]}" == 'true'
+      @resorts = @region.sort_resorts_alphabetically
+    elsif params[:ttm_revenue_usd] != nil
+      @resorts = @region.filter_resorts_by(params[:ttm_revenue_usd])
+    else
+      @resorts = @region.resorts.all
+    end
+  end
+
+  def new_resort
+    @region = Region.find(params[:id])
+  end
+
+  def create_new_resort
+    region = Region.find(params[:id])
+    region.resorts.create(resort_params)
+    redirect_to "/regions/#{region.id}/resorts"
+  end
+
+  private
   def region_params
     params.permit(:name, :active, :rvp_operations, :priority)
+  end
+
+  private
+  def resort_params
+    params.permit(:name, :country, :state_province, :active, :director_operations, :ttm_revenue_usd)
   end
 
 end

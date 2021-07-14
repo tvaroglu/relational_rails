@@ -1,0 +1,31 @@
+<div style="padding-left:20px;">
+  <%= form_with url: "/resorts/#{@resort.id}/edit", method: :patch, local: true do |form| %>
+    <br>
+    <%= form.label :name, 'Name:' %>
+    <%= form.text_field :name %>
+    <br><br>
+    <%= form.label :country, 'Country:' %>
+    <%= form.text_field :country %>
+    <br><br>
+    <%= form.label :state_province, 'State/Province:' %>
+    <%= form.text_field :state_province %>
+    <br><br>
+
+    <%= form.label :active, 'Currently Active:'%>
+    <br>
+    <%= form.radio_button :active, true %>
+    <%= form.label :active, 'Yes', :value => true %>
+    <br>
+    <%= form.radio_button :active, false %>
+    <%= form.label :active, 'No', :value => false %>
+    <br><br>
+
+    <%= form.label :director_operations, 'Director of Operations:' %>
+    <%= form.text_field :director_operations %>
+    <br><br>
+    <%= form.label :ttm_revenue_usd, 'Last 12 Months Total Revenue ($USD):' %>
+    <%= form.text_field :ttm_revenue_usd %>
+    <br><br><br>
+    <%= form.submit 'Update Resort' %>
+  <% end %>
+</div>

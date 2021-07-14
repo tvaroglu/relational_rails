@@ -1,9 +1,14 @@
-<!-- <a href="/trails">Trails Index</a> -->
+<h1>Parks Index</h1>
 
-<br><br><%= link_to "New Park", '/parks/new' %>
+<br>
+<%= link_to 'New Park', '/parks/new' %>
+<br><br>
 
-<h1>All Parks</h1>
 <% @parks.each do |park| %>
   <h3><%= park.name %></h3>
-  <p>created at: <%= park.created_at %></p>
-<% end %>
+  <p>Created At: <%= park.created_at %></p>
+  <%= link_to "Edit #{park.name}", "/parks/#{park.id}/edit" %>&nbsp;
+  <%= link_to "Delete #{park.name}", "/parks/#{park.id}", method: :delete %>&nbsp;
+
+  <br><br>
+  <% end %>

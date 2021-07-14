@@ -13,8 +13,8 @@ Park.destroy_all
 Resort.destroy_all
 Region.destroy_all
 
-SkiBrand.destroy_all
 Ski.destroy_all
+SkiBrand.destroy_all
 
 # Parks
 north_table = Park.create!(
@@ -29,17 +29,73 @@ chatauqua = Park.create!(
   county: "Boulder",
   parking_fee: 5,
   dogs_allowed: true)
+hall_ranch = Park.create!(
+  name: "Hall Ranch Open Space",
+  state: "CO",
+  county: "Boulder",
+  parking_fee: 0,
+  dogs_allowed: false)
 
 # Trails
-nt_loop = north_table.trails.create!(
+north_table.trails.create!(
   name: "North Table Loop",
   length: 38016,
   elevation_gain: 1059,
   loop: true)
-cottonwood = north_table.trails.create!(
+north_table.trails.create!(
   name: "Cottonwood Canyon Trail",
   length: 5280,
   elevation_gain: 320,
+  loop: false)
+north_table.trails.create!(
+  name: "Tilting Mesa Trail",
+  length: 5000,
+  elevation_gain: 40,
+  loop: false)
+north_table.trails.create!(
+  name: "Mesa Top Trail",
+  length: 10560,
+  elevation_gain: 560,
+  loop: false)
+north_table.trails.create!(
+  name: "Rim Rock Trail",
+  length: 10000,
+  elevation_gain: 110,
+  loop: true)
+north_table.trails.create!(
+  name: "Golden Cliffs Trail",
+  length: 6280,
+  elevation_gain: 160,
+  loop: true)
+chatauqua.trails.create!(
+  name: "Royal Arch",
+  length: 15750,
+  elevation_gain: 1394,
+  loop: false)
+chatauqua.trails.create!(
+  name: "Chatauqua Trail",
+  length: 6000,
+  elevation_gain: 419,
+  loop: false)
+chatauqua.trails.create!(
+  name: "First and Second Flatirons Loop",
+  length: 11000,
+  elevation_gain: 1427,
+  loop: true)
+hall_ranch.trails.create!(
+  name: "Button Rock Dam via Sleepy Lion Trail",
+  length: 27200,
+  elevation_gain: 856,
+  loop: true)
+hall_ranch.trails.create!(
+  name: "Picture Rock Trail",
+  length: 50000,
+  elevation_gain: 984,
+  loop: false)
+hall_ranch.trails.create!(
+  name: "Antelope Trail",
+  length: 10000,
+  elevation_gain: 449,
   loop: false)
 
 
@@ -222,13 +278,35 @@ latam.resorts.create!(
   director_operations: 'Diego Velun',
   ttm_revenue_usd: 0)
 
+
 # Ski Brands
-atomic = SkiBrand.create!(name:'Atomic', does_racing:'true', year_founded:1955)
-head = SkiBrand.create!(name:'Head', does_racing:'true', year_founded:1950)
-line = SkiBrand.create!(name:'Line', does_racing:'false', year_founded:1995)
-armada = SkiBrand.create!(name:'Armada', does_racing:'false', year_founded:2002)
+atomic = SkiBrand.create!(
+  name: 'Atomic',
+  does_racing: 'true',
+  year_founded: 1955)
+head = SkiBrand.create!(
+  name: 'Head',
+  does_racing: 'true',
+  year_founded: 1950)
+line = SkiBrand.create!(
+  name: 'Line',
+  does_racing: 'false',
+  year_founded: 1995)
+armada = SkiBrand.create!(
+  name: 'Armada',
+  does_racing: 'false',
+  year_founded: 2002)
 
 # Skis
-bentChetler = Ski.create!(name:'Bent Chetler 100', for_jumps:'true', turn_radius:19.5, ski_brand_id: atomic.id)
-vantage = Ski.create!(name:'Vantage 90 Ti', for_jumps:'false', turn_radius:18.4, ski_brand_id: atomic.id)
-arv106 = Ski.create!(name:'ARV 106', for_jumps:'true', turn_radius:20.5, ski_brand_id: armada.id)
+atomic.skis.create!(
+  name: 'Bent Chetler 100',
+  for_jumps: true,
+  turn_radius:19.5)
+atomic.skis.create!(
+  name: 'Vantage 90 Ti',
+  for_jumps: false,
+  turn_radius:18.4)
+armada.skis.create!(
+  name: 'ARV 106',
+  for_jumps: 'true',
+  turn_radius: 20.5)

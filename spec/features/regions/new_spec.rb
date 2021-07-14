@@ -36,7 +36,7 @@ RSpec.describe 'Region creation' do
     select(region.priority, from: 'Priority')
     click_button 'Create Region'
 
-    expect(current_path).to eq("/regions")
+    expect(current_path).to eq('/regions')
     expect(page).to have_content(region.name)
     expect(page).to have_content(region.created_at)
   end

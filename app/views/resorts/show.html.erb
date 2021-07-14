@@ -1,9 +1,16 @@
-<h1><%= @resort.name %></h1>
+<div style="padding-left:20px;">
+  <h2><%= "Resort: #{@resort.name}" %></h2>
+  <form style="float:left; padding-right:10px;" action= <%= "/resorts/#{@resort.id}/edit" %>>
+    <input type="submit" value="Update Resort"/>
+  </form>
+  <%= button_to 'Delete Resort', "/resorts/#{@resort.id}", method: :delete %>
+  <br><br>
 
-<p>Country: <%= @resort.country %></p>
-<p>State/Province: <%= @resort.state_province %></p>
-<p>Currently Active: <%= @resort.active %></p>
-<p>Director of Operations: <%= @resort.director_operations %></p>
-<p>Last 12 Months Total Revenue ($MM): <%= (@resort.ttm_revenue_usd / 1000000.to_f).round(1) %></p>
-<p>Created At: <%= @resort.created_at %></p>
-<p>Last Updated At: <%= @resort.updated_at %></p>
+  <p>State/Province: <%= @resort.state_province %></p>
+  <p>Country: <%= @resort.country %></p>
+  <p>Currently Active: <%= @resort.active %></p>
+  <p>Director of Operations: <%= @resort.director_operations %></p>
+  <p>Last 12 Months Total Revenue ($MM): <%= (@resort.ttm_revenue_usd.to_i / 1000000.to_f).round(1) %></p>
+  <p>Created At: <%= @resort.created_at %></p>
+  <p>Last Updated At: <%= @resort.updated_at %></p>
+</div>

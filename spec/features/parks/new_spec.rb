@@ -20,21 +20,24 @@ RSpec.describe 'Parks new' do
   expect(current_path).to eq('/parks/new')
   end
 
-  xit 'can create new park' do
+  it 'can create new park' do
+    park = Park.create!(name: "South Table Mountain",
+                        state: "CO",
+                        county: "Jefferson",
+                        parking_fee: 0,
+                        dogs_allowed: false)
+
     visit '/parks/new'
 
-    fill_in('Name', with: 'South Table Mountain')
-    fill_in('State', with: 'CO')
-    fill_in('County', with: 'Jefferson')
-    fill_in('Parking Fee', with: 'zero')
-    fill_in('Dogs Allowed', with: 'false')
+    fill_in('Name', with: park.name)
+    fill_in('State', with: park.state)
+    fill_in('County', with: park.county)
+    fill_in('Parking Fee', with: park.parking_fee)
+    select('No', from: 'Dogs Allowed?')
     click_button('Create Park')
 
-    expect(current_path).to be("/parks/")
-    expect(page).to have_content('South Table Mountain')
-    expect(page).to have_content("State: CO")
-    expect(page).to have_content("County: Jefferson")
-    expect(page).to have_content("Parking Fee: 0")
-    expect(page).to have_content("Dogs Allowed: false")
+    expect(current_path).to eq("/parks")
+    expect(page).to have_content(park.name)
+    expect(page).to have_content(park.created_at)
   end
 end

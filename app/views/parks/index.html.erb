@@ -7,6 +7,8 @@
 <% @parks.each do |park| %>
   <h3><%= park.name %></h3>
   <p>Created At: <%= park.created_at %></p>
-  <%= link_to "Edit #{park.name}", "/parks/#{park.id}/edit" %>
+  <%= link_to "Edit #{park.name}", "/parks/#{park.id}/edit" %>&nbsp;
+  <%= link_to "Delete #{park.name}", "/parks/#{park.id}", method: :delete %>&nbsp;
+
   <br><br>
   <% end %>

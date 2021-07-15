@@ -3,6 +3,8 @@ class ParkTrailsController < ApplicationController
     @park = Park.find(params[:id])
     if "#{params[:sorted]}" == 'true'
       @trails = @park.sort_trails_alphabetically
+    elsif params[:elevation_gain] != nil
+      @trails = @park.filter_by_elevation(params[:elevation_gain])
     else
       @trails = @park.trails
     end

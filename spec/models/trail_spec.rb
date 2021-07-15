@@ -19,12 +19,9 @@ RSpec.describe Trail do
       loop: false)
   end
 
-# User Story 15, Child Index only shows `true` Records (x2)
-  # As a visitor
-  # When I visit the child index
-  # Then I only see records where the boolean column is `true`
   it 'returns all trails that are a loop(true)' do
     expect(Trail.loop_trails.length).to be(1)
     expect(Trail.loop_trails.first).to eq(@trail_1)
+    expect(Trail.loop_trails).to_not include(@trail_2)
   end
 end

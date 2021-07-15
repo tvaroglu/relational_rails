@@ -2,7 +2,7 @@
   <%= bootstrap_form_tag url: '/skis', method: :post do |form| %>
     <%= form.text_field :name, value: params[:name] ? params[:name] : nil, required: true %>
     <%= form.check_box :for_jumps, checked: params[:for_jumps] == "1" ? true : nil %>
-    <%= form.number_field :turn_radius, value: params[:turn_radius] ? params[:turn_radius] : nil, required: true %>
+    <%= form.number_field :turn_radius, value: params[:turn_radius] ? params[:turn_radius] : nil, required: true, step: 0.1 %>
 
   <%= form.form_group :ski_brand_id, label: { text: "Brand" }, value: "Head", required: true do %>
     <% @ski_brands.each do |brand| %>

@@ -17,12 +17,7 @@ RSpec.describe 'Trails index' do
       loop: false)
   end
 
-# User Story 3, Child Index
-  # As a visitor
-  # When I visit '/child_table_name'
-  # Then I see each Child in the system including the Child's attributes:
-  it 'shows a list of trails including attributes' do
-
+  it 'has a list of trails including their attributes' do
     visit '/trails'
 
     expect(page).to have_content(@trail_1.name)
@@ -31,11 +26,7 @@ RSpec.describe 'Trails index' do
     expect(page).to have_content(@trail_1.loop)
   end
 
-# User Story 9:
-  # As a visitor
-  # When I visit any page on the site
-  # Then I see a link at the top of the page that takes me to the Parent Index
-  it 'shows link to the parks index' do
+  it 'has a link to the parks index' do
     visit "/trails"
 
     click_on "Parks Index"
@@ -43,11 +34,7 @@ RSpec.describe 'Trails index' do
     expect(current_path).to eq('/parks')
   end
 
-# User Story 15, Child Index only shows `true` Records (x2)
-  # As a visitor
-  # When I visit the child index
-  # Then I only see records where the boolean column is `true`
-  it 'returns all trails that are a loop' do
+  it 'lists only loop trails (true case)' do
     visit '/trails'
 
     expect(page).to have_content(@trail_1.name)
@@ -57,26 +44,15 @@ RSpec.describe 'Trails index' do
     expect(page).to_not have_content(@trail_2.loop)
   end
 
-# User Story 18, Child Update From Childs Index Page (x1)
-  # As a visitor
-  # When I visit the `child_table_name` index page or a parent `child_table_name` index page
-  # Next to every child, I see a link to edit that child's info
-  # When I click the link
-  # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
   it 'has a link to update an exisiting trail' do
     visit '/trails'
 
     click_on("Edit #{@trail_1.name}")
 
     expect(current_path).to eq("/trails/#{@trail_1.id}/edit")
+    expect(page).to have_content(@trail_1.name)
   end
 
-# User Story 23, Child Delete From Childs Index Page (x1)
-  # As a visitor
-  # When I visit the `child_table_name` index page or a parent `child_table_name` index page
-  # Next to every child, I see a link to delete that child
-  # When I click the link
-  # I should be taken to the `child_table_name` index page where I no longer see that child
   it 'has a link that deletes an existing trail' do
     visit '/trails'
 

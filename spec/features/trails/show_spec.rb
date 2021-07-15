@@ -12,10 +12,7 @@ RSpec.describe 'Trails Show' do
                           elevation_gain: 1059,
                           loop: true)
   end
-# User Story 4
-  # As a visitor
-  # When I visit '/child_table_name/:id'
-  # Then I see the child with that id including the child's attributes:
+
   it 'displays the name of the specified trail along with attributes' do
     visit "/trails/#{@trail.id}"
 
@@ -25,11 +22,7 @@ RSpec.describe 'Trails Show' do
     expect(page).to have_content("Loop: #{@trail.loop}")
   end
 
-  # User Story 8:
-  # As a visitor
-  # When I visit any page on the site
-  # Then I see a link at the top of the page that takes me to the Child Index
-  it 'shows link to the trails index' do
+  it 'has a link to the trails index' do
     visit "/trails/#{@trail.id}"
 
     click_on "Trails Index"
@@ -37,11 +30,7 @@ RSpec.describe 'Trails Show' do
     expect(current_path).to eq('/trails')
   end
 
-  # User Story 9:
-  # As a visitor
-  # When I visit any page on the site
-  # Then I see a link at the top of the page that takes me to the Parent Index
-  it 'shows link to the parks index' do
+  it 'has a link to the parks index' do
     visit "/trails/#{@trail.id}"
 
     click_on "Parks Index"
@@ -49,14 +38,6 @@ RSpec.describe 'Trails Show' do
     expect(current_path).to eq('/parks')
   end
 
-# User Story 20, Child Delete (x2)
-  # As a visitor
-  # When I visit a child show page
-  # Then I see a link to delete the child "Delete Child"
-  # When I click the link
-  # Then a 'DELETE' request is sent to '/child_table_name/:id',
-  # the child is deleted,
-  # and I am redirected to the child index page where I no longer see this child
   it 'has a link to delete an existing trail' do
     visit "/trails/#{@trail.id}"
 

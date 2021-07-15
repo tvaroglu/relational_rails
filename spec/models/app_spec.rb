@@ -14,10 +14,15 @@ RSpec.describe ApplicationRecord do
         @arv106 = Ski.create!(name:'ARV106', for_jumps:'true', turn_radius:20.5, ski_brand_id: @armada.id)
       end
       it 'sorts a table or subset by a given column in descending order' do
+        #skis in original order
         expect(@atomic.skis[0]).to eq(@vantage)
         expect(@atomic.skis[1]).to eq(@bentChetler)
-        expect(@atomic.skis.order_alphabetically('name')[0]).to eq(@bentChetler)
-        expect(@atomic.skis.order_alphabetically('name')[1]).to eq(@vantage)
+        #skis ordered asc, switches order 
+        expect(@atomic.skis.order_alphabetically('name', 'asc')[0]).to eq(@bentChetler)
+        expect(@atomic.skis.order_alphabetically('name', 'asc')[1]).to eq(@vantage)
+        #skis ordered desc, switches order back
+        expect(@atomic.skis.order_alphabetically('name', 'desc')[1]).to eq(@bentChetler)
+        expect(@atomic.skis.order_alphabetically('name', 'desc')[0]).to eq(@vantage)
       end
     end
   end

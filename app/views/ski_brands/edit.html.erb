@@ -1,6 +1,8 @@
-<%= bootstrap_form_tag url: "/ski_brands/#{@ski_brand.id}", method: :patch do |form| %>
-<%= form.text_field :name, value: "#{@ski_brand.name}" %>
-<%= form.number_field :year_founded, value: "#{@ski_brand.year_founded}" %>
-<%= form.check_box 'Does Racing', value: "#{@ski_brand.does_racing}" %>
-<%= form.submit 'Update' %>
-<% end %>
+<div class="col-4">
+  <%= bootstrap_form_tag url: "/ski_brands/#{@ski_brand.id}", method: :patch do |form| %>
+    <%= form.text_field :name, value: "#{@ski_brand.name}" %>
+    <%= form.number_field :year_founded, value: "#{@ski_brand.year_founded}" %>
+    <%= form.check_box 'Does Racing', value: "#{@ski_brand.does_racing}" %>
+    <%= form.submit 'Update' %>
+  <% end %>
+</div>

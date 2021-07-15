@@ -1,5 +1,4 @@
-<table>
-  <div class="col-6">
+<div class="col-6">
     <ul class="nav nav-tabs">
       <li class="nav-item">
         <a class="nav-link active" aria-current="page">All Skis</a>
@@ -8,14 +7,18 @@
         <a class="nav-link" href="/ski_brands/<%=@brand_id%>/skis/new">Create Ski</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/ski_brands/<%=@brand_id%>/skis?sort=alpha">Sort Alphabetically</a>
+        <a  href=<%=
+          params[:sort] == 'asc' ? 
+          "/ski_brands/#{@brand_id}/skis?sort=desc&#{params[:turn_radius] ? "turn_radius=#{params[:turn_radius]}" : nil}" 
+          : "/ski_brands/#{@brand_id}/skis?sort=asc&#{params[:turn_radius] ? "turn_radius=#{params[:turn_radius]}" : nil}"%>
+          >Sort Alphabetically
+        </a>
       </li>
       <li class="nav-item">
       </li>
     </ul>
     <%= bootstrap_form_tag url: "/ski_brands/#{@brand_id}/skis", method: :get do |form| %>
-    <%= form.number_field :turn_radius,min: "#{@ski_min}", max:"#{@ski_max}" %>
-    <!-- <input type="range" name="rangeInput" min=<%=@ski_min%> max=<%=@ski_max%> onchange="updateTextInput(this.value);"> -->
+      <%= form.number_field :turn_radius,min: "#{@ski_min}", max:"#{@ski_max}", required: true, value: params[:turn_radius] ? params[:turn_radius] : nil %>
     <%= form.submit 'Filter Ski By Turn Radius' %>
   <% end %>
   </div>

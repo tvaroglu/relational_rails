@@ -13,8 +13,14 @@ class SkisController < ApplicationController
   end
 
   def create
-    if Ski.create(ski_params)
+    @ski = Ski.create(ski_params)
+    if @ski.id != nil
+      flash[:alert]
       redirect_to '/skis'
+    else
+      @ski_brands = SkiBrand.all
+      flash[:alert] = "Please Select a Brand"
+      render '/skis/new'
     end
   end
 

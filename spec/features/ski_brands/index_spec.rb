@@ -59,7 +59,7 @@ RSpec.describe 'ski brands Index' do
     expect(page).to_not have_content("Head")
   end
 
-  xit 'has a button to sort ski brands by the number of skis they make' do
+  it 'has a button to sort ski brands by the number of skis they make' do
     click_on('sort by number of skis')
     expect(current_path).to eq("/ski_brands")
     expect('Atomic').to appear_before('Armada')

@@ -7,7 +7,7 @@
         <a class="nav-link" href="/ski_brands/<%=@brand_id%>/skis/new">Create Ski</a>
       </li>
       <li class="nav-item">
-        <a  href=<%=
+        <a class="nav-link" href=<%=
           params[:sort] == 'asc' ? 
           "/ski_brands/#{@brand_id}/skis?sort=desc&#{params[:turn_radius] ? "turn_radius=#{params[:turn_radius]}" : nil}" 
           : "/ski_brands/#{@brand_id}/skis?sort=asc&#{params[:turn_radius] ? "turn_radius=#{params[:turn_radius]}" : nil}"%>

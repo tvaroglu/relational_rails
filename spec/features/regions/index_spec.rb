@@ -99,4 +99,55 @@ RSpec.describe 'regions index page' do
     expect(page).to_not have_content(resort.name)
   end
 
+  # Extension:
+  # Sort Parents by Number of Children (x3)
+    # As a visitor
+    # When I visit the Parents Index Page
+    # Then I see a link to sort parents by the number of `child_table_name` they have
+    # When I click on the link
+    # I'm taken back to the Parent Index Page where I see all of the parents in order of their count of `child_table_name` (highest to lowest) And, I see the number of children next to each parent name
+  it 'can sort regions by resort count' do
+    region_1 = Region.create!(
+      name: 'US - Rocky Mountain',
+      active: true,
+      rvp_operations: 'Fred "Shreddy" McGnar',
+      priority: 1)
+    resort_1 = region_1.resorts.create!(
+      name: 'Crested Butte',
+      country: 'United States',
+      state_province: 'CO',
+      active: true,
+      director_operations: 'Molly Hauck',
+      ttm_revenue_usd: 170530257)
+    resort_2 = region_1.resorts.create!(
+      name: 'Breckenridge',
+      country: 'United States',
+      state_province: 'CO',
+      active: true,
+      director_operations: 'Doug Lowell',
+      ttm_revenue_usd: 227373675)
+
+    region_2 = Region.create!(
+      name: 'LATAM',
+      active: false,
+      rvp_operations: 'Gustavo Fring',
+      priority: 3)
+    region_2.resorts.create!(
+      name: 'Cerro Castor',
+      country: 'Argentina',
+      state_province: 'Tierra del Fuego',
+      active: false,
+      director_operations: 'Diego Velun',
+      ttm_revenue_usd: 0)
+
+    visit '/regions'
+    # save_and_open_page
+    expect(page).to have_content("Total Resorts: #{region_1.resort_count}")
+    expect(page).to have_content("Total Resorts: #{region_2.resort_count}")
+
+    click_on 'Sort by Resort Count'
+    expect(current_path).to eq('/regions')
+    expect(region_1.name).to appear_before(region_2.name)
+  end
+
 end

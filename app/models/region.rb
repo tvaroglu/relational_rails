@@ -5,6 +5,13 @@ class Region < ApplicationRecord
     Region.all.order(created_at: :desc)
   end
 
+  def self.sorted_by_resort_count
+    Region.select('regions.*, COUNT(resorts.id) AS resort_count').
+      joins(:resorts).
+      group('regions.id').
+      order('resort_count DESC')
+  end
+
   def resort_count
     self.resorts.count
   end

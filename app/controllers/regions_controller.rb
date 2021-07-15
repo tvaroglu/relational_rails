@@ -38,6 +38,8 @@ class RegionsController < ApplicationController
   end
 
   def resorts
+    # could utilize a new route (tradeoff vs lengthier controller methods)
+      # would want to look into splitting out when we reach ~4-5 params
     @region = Region.find(params[:id])
     if "#{params[:sorted]}" == 'true'
       @resorts = @region.sort_resorts_alphabetically

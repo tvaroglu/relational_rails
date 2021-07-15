@@ -6,10 +6,11 @@ class Region < ApplicationRecord
   end
 
   def self.sorted_by_resort_count
-    Region.select('regions.*, COUNT(resorts.id) AS resort_count').
-      joins(:resorts).
-      group('regions.id').
-      order('resort_count DESC')
+    # Note, more conventional to place the "." at the start of new lines
+    Region.select('regions.*, COUNT(resorts.id) AS resort_count')
+      .joins(:resorts)
+      .group('regions.id')
+      .order('resort_count DESC')
   end
 
   def resort_count

@@ -4,8 +4,15 @@
 <h2>Trails Index</h2>
 
 <%= link_to 'Create Trail', "/parks/#{@park.id}/trails/new" %>&nbsp;
-<%= link_to 'Sort Alphabetically', "/parks/#{@park.id}/trails?sorted=true" %>
+<%= link_to 'Sort Alphabetically', "/parks/#{@park.id}/trails?sorted=true" %>&nbsp;
 <br><br>
+
+<%= form_with url: "/parks/#{@park.id}/trails?elevation_gain=#{params[:elevation_gain]}", method: :get, local: true do |form| %>
+  <%= form.label :elevation_gain, 'Elevation Gain:' %>
+  <%= form.number_field :elevation_gain %>
+
+  <%= form.submit 'Filter Trails' %>
+<% end %>
 
 <% @trails.each do |trail| %>
   <h3><%= trail.name %></h3>

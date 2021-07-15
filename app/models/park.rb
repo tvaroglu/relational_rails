@@ -8,4 +8,8 @@ class Park < ApplicationRecord
   def sort_trails_alphabetically
     self.trails.order(:name)
   end
+
+  def filter_by_elevation(feet)
+    self.trails.where("elevation_gain > ?", feet)
+  end
 end

@@ -9,7 +9,7 @@ RSpec.describe 'Ski brands -Skis Index' do
     @vantage = Ski.create!(name:'Vantage 90 Ti', for_jumps:'false', turn_radius:18.4, ski_brand_id: @atomic.id)
     @bentChetler = Ski.create!(name:'Bent Chetler 100', for_jumps:'true', turn_radius:19.5, ski_brand_id: @atomic.id)
     @arv106 = Ski.create!(name:'ARV 106', for_jumps:'true', turn_radius:20.5, ski_brand_id: @armada.id)
-    
+
     visit "/ski_brands/#{@atomic.id}/skis"
   end
 
@@ -48,7 +48,7 @@ RSpec.describe 'Ski brands -Skis Index' do
   end
 
   it '24 - has a link to delete each ski, which returns back to ski b ski index' do
-    print page.html
+    # print page.html
     within("tr[id=ski-#{@bentChetler.id.to_s}]") do
       click_link('Delete')
     end

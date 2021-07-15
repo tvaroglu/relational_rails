@@ -1,0 +1,15 @@
+<div class="col-6">
+  <%= bootstrap_form_tag url: "/skis/#{@ski.id}", method: :patch do |form| %>
+  <%= form.text_field :name, value: @ski.name %>
+  <%= form.check_box :for_jumps, value: @ski.for_jumps %>
+  <%= form.number_field :turn_radius, value: @ski.turn_radius %>
+
+  <%= form.form_group :ski_brand_id, label: { text: "Brand" }, value: @ski.ski_brand do %>
+    <% @ski_brands.each do |brand| %>
+      <%= form.radio_button :ski_brand_id, brand.id, label: "#{brand.name}" %>
+    <% end %>
+  <% end %>
+
+  <%= form.submit 'Update' %>
+<% end %>
+</div>

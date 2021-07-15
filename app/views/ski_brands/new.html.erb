@@ -1,6 +1,8 @@
-<%= bootstrap_form_tag url: "/ski_brands", method: :post do |form| %>
-  <%= form.text_field :name %>
-  <%= form.number_field :year_founded %>
-  <%= form.check_box :racing, id: 'racing' %>
-  <%= form.submit 'Update' %>
-<% end %>
+<div class="col-4">
+  <%= bootstrap_form_tag url: "/ski_brands", method: :post do |form| %>
+    <%= form.text_field :name, required: "true" %>
+    <%= form.number_field :year_founded, required: "true" %>
+    <%= form.check_box :racing, id: 'racing', required: "true" %>
+    <%= form.submit 'Create', class: "btn btn-primary" %>
+  <% end %>
+</div>

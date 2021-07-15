@@ -13,14 +13,14 @@ RSpec.describe 'ski brands Index' do
     visit '/ski_brands'
   end
 
-  it 'has all of the ski brands' do
+  it '1 - has all of the ski brands' do
     expect(page).to have_content(@atomic.name)
     expect(page).to have_content(@head.name)
     expect(page).to have_content(@armada.name)
     expect(page).to have_content(@line.name)
   end
 
-  it 'is sorted by most recently created' do
+  it '6 - is sorted by most recently created' do
     expect(@atomic.name).to appear_before(@head.name)
     expect(@head.name).to appear_before(@line.name)
     expect(@line.name).to appear_before(@armada.name)
@@ -47,13 +47,11 @@ RSpec.describe 'ski brands Index' do
     expect(current_path).to eq("/ski_brands/#{@head.id}/edit")
     fill_in 'year_founded', with: '2005'
     click_on('commit')
-    expect(current_path).to eq("/ski_brands")
-    within("//tr[@id='Head']") do
-      expect(page).to have_content("2005")
-    end
+    expect(current_path).to eq("/ski_brands/#{@head.id}")
+    expect(page).to have_content("2005")
   end
 
-  it 'has a delete button for each brand, which deletes it and returns to index' do
+  it '22 - has a delete button for each brand, which deletes it and returns to index' do
     within("//tr[@id='Head']") do
       click_on('Delete Head')
     end
@@ -61,10 +59,9 @@ RSpec.describe 'ski brands Index' do
     expect(page).to_not have_content("Head")
   end
 
-  xit 'has a button to sort ski brands by the number of skis they make' do
+  it 'has a button to sort ski brands by the number of skis they make' do
     click_on('sort by number of skis')
     expect(current_path).to eq("/ski_brands")
     expect('Atomic').to appear_before('Armada')
-    expect('Armada').to appear_before('Head')
   end
 end

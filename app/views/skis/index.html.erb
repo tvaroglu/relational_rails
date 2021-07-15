@@ -1,5 +1,12 @@
 <div class="col-6">
-  <h3>All Skis</h3>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page">All Skis</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/skis/new">Create Ski</a>
+    </li>
+  </ul>
 </div>
 <div class="row justify-content-center">
   <div class="col-6">
@@ -9,13 +16,17 @@
           <th>Name</th>
           <th>For Jumps?</th>
           <th>Turn Radius</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <% @skis.each do |ski| %>
-      <tr id="<%= ski.name %>">
+      <tr id="<%=ski.name%>">
         <td><%= ski.name %></td>
         <td><%= ski.for_jumps %></td>
         <td><%= ski.turn_radius %></td>
+        <td><%= link_to "edit", "/skis/#{ski.id}/edit" %></td>
+        <td><%= link_to "delete", "/skis/#{ski.id}", method: :delete %></td>
       </tr>
       <% end %>
     </table>

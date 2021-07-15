@@ -1,10 +1,12 @@
 class SkiBrandsController < ApplicationController
   def index
     @brands = SkiBrand.all
+    if params[:sort] == 'ski_count'
+      @brands = @brands.order_by_ski_count
+    end
   end
   def show
     @brand = SkiBrand.find(params[:id])
-    @ski_count = @brand.skis.count
   end
 
   def new
@@ -26,15 +28,15 @@ class SkiBrandsController < ApplicationController
   def update
     @ski_brand = SkiBrand.find(params[:id])
     if @ski_brand.update(brand_params)
-      redirect_to '/ski_brands'
+      redirect_to "/ski_brands/#{@ski_brand.id}"
     else
       flash[:alert] = "Error: #{error_message(@ski_brand.errors)}"
-      redirect_to '/ski_brands/edit'
+      redirect_to "/ski_brands/#{@ski_brand.id}/edit"
     end
   end
 
   def delete
-    SkiBrand.find(brand_params[:id]).delete
+    SkiBrand.find(brand_params[:id]).destroy
     redirect_to '/ski_brands'
   end
   private

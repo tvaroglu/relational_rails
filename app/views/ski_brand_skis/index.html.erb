@@ -1,12 +1,51 @@
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Meant for jumps?</th>
-    <th>Turn Radius</th>
-  </tr>
-  <% @skis.each do |ski| %>
-    <%= ski.name %>
-    <%= ski.for_jumps %>
-    <%= ski.turn_radius %>
+<div class="col-6">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page">All Skis</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/ski_brands/<%=@brand_id%>/skis/new">Create Ski</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href=<%=
+          params[:sort] == 'asc' ? 
+          "/ski_brands/#{@brand_id}/skis?sort=desc&#{params[:turn_radius] ? "turn_radius=#{params[:turn_radius]}" : nil}" 
+          : "/ski_brands/#{@brand_id}/skis?sort=asc&#{params[:turn_radius] ? "turn_radius=#{params[:turn_radius]}" : nil}"%>
+          >Sort Alphabetically
+        </a>
+      </li>
+      <li class="nav-item">
+      </li>
+    </ul>
+    <%= bootstrap_form_tag url: "/ski_brands/#{@brand_id}/skis", method: :get do |form| %>
+      <%= form.number_field :turn_radius,min: "#{@ski_min}", max:"#{@ski_max}", required: true, value: params[:turn_radius] ? params[:turn_radius] : nil %>
+    <%= form.submit 'Filter Ski By Turn Radius' %>
   <% end %>
-</table>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>For Jumps?</th>
+            <th>Turn Radius</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <% @skis.each do |ski| %>
+        <tr id="ski-<%=ski.id%>">
+          <td><%= ski.name %></td>
+          <td><%= ski.for_jumps %></td>
+          <td><%= ski.turn_radius %></td>
+          <td><%= link_to "Delete", "/ski_brands/#{@brand_id}/skis/#{ski.id}", method: :delete %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <script>
+    function updateTextInput(val) {
+      document.getElementById('textInput').value=val; 
+    }
+  </script>

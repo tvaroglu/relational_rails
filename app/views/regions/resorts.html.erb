@@ -13,7 +13,7 @@
   <div style="float:left;">
     <%= form_with url: "/regions/#{@region.id}/resorts?ttm_revenue_usd=#{params[:ttm_revenue_usd]}", method: :get, local: true do |form| %>
       <%= form.label :ttm_revenue_usd, 'Minimum Revenue Threshold ($MM):' %>
-      <%= form.select :ttm_revenue_usd, (0..1000).step(100).to_a, selected: 0 %>
+      <%= form.select :ttm_revenue_usd, (0..1000).step(50).to_a, selected: 0 %>
       <br>
       <%= form.submit 'Filter Resorts' %>
     <% end %>

@@ -1,7 +1,11 @@
 class RegionsController < ApplicationController
 
   def index
-    @regions = Region.ordered_by_created_date
+    if params[:commit] == "Sort by Resort Count"
+      @regions = Region.sorted_by_resort_count
+    else
+      @regions = Region.ordered_by_created_date
+    end
   end
 
   def show
